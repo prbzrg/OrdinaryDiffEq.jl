@@ -15,7 +15,7 @@ function nlsolve!(nlsolver::AbstractNLSolver, integrator::DiffEqBase.DEIntegrato
     check_div′ = check_div(nlsolver)
     @label REDO
     if isnewton(nlsolver)
-        cache === nothing &&
+        isnothing(cache) &&
             throw(ArgumentError("cache is not passed to `nlsolve!` when using NLNewton"))
         if nlsolver.method === DIRK
             γW = nlsolver.γ * integrator.dt

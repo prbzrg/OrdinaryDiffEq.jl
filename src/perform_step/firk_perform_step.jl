@@ -18,7 +18,7 @@ function do_newJ(integrator, alg, cache, repeat_step)::Bool # for FIRK
 end
 
 function do_newW(integrator, nlsolver, new_jac, W_dt)::Bool # for FIRK
-    nlsolver === nothing && return true
+    isnothing(nlsolver) && return true
     new_jac && return true
     # reuse W when the change in stepsize is small enough
     dt = integrator.dt

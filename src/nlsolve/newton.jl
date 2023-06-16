@@ -481,7 +481,7 @@ function Base.resize!(nlcache::NLNewtonCache, ::AbstractNLSolver, integrator, i:
     resize!(nlcache.atmp, i)
     resize!(nlcache.dz, i)
     resize!(nlcache.du1, i)
-    if nlcache.jac_config !== nothing
+    if !isnothing(nlcache.jac_config)
         resize_jac_config!(nlcache.jac_config, i)
     end
     resize!(nlcache.weight, i)

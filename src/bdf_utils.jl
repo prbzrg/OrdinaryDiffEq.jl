@@ -149,7 +149,7 @@ function calc_Lagrange_interp!(k, weights, t, ts, u_history, u)
     vc = _vec(u)
     # ts is short enough that linear search will be faster
     i = findfirst(isequal(t), ts)
-    if i !== nothing
+    if !isnothing(i)
         @.. broadcast=false @views vc = u_history[:, i]
     else
         for i in 1:(k + 1)

@@ -80,7 +80,7 @@ function _savevalues!(integrator, force_save, reduce_size)::Tuple{Bool, Bool}
         else # ==t, just save
             savedexactly = true
             copyat_or_push!(integrator.sol.t, integrator.saveiter, integrator.t)
-            if integrator.opts.save_idxs === nothing
+            if isnothing(integrator.opts.save_idxs)
                 copyat_or_push!(integrator.sol.u, integrator.saveiter, integrator.u)
             else
                 copyat_or_push!(integrator.sol.u, integrator.saveiter,
@@ -89,7 +89,7 @@ function _savevalues!(integrator, force_save, reduce_size)::Tuple{Bool, Bool}
             if typeof(integrator.alg) <: FunctionMap || integrator.opts.dense
                 integrator.saveiter_dense += 1
                 if integrator.opts.dense
-                    if integrator.opts.save_idxs === nothing
+                    if isnothing(integrator.opts.save_idxs)
                         copyat_or_push!(integrator.sol.k, integrator.saveiter_dense,
                             integrator.k)
                     else
@@ -109,7 +109,7 @@ function _savevalues!(integrator, force_save, reduce_size)::Tuple{Bool, Bool}
         (isempty(integrator.sol.t) || (integrator.t !== integrator.sol.t[end])))
         integrator.saveiter += 1
         saved, savedexactly = true, true
-        if integrator.opts.save_idxs === nothing
+        if isnothing(integrator.opts.save_idxs)
             copyat_or_push!(integrator.sol.u, integrator.saveiter, integrator.u)
         else
             copyat_or_push!(integrator.sol.u, integrator.saveiter,
@@ -119,7 +119,7 @@ function _savevalues!(integrator, force_save, reduce_size)::Tuple{Bool, Bool}
         if typeof(integrator.alg) <: FunctionMap || integrator.opts.dense
             integrator.saveiter_dense += 1
             if integrator.opts.dense
-                if integrator.opts.save_idxs === nothing
+                if isnothing(integrator.opts.save_idxs)
                     copyat_or_push!(integrator.sol.k, integrator.saveiter_dense,
                         integrator.k)
                 else
@@ -168,7 +168,7 @@ function solution_endpoint_match_cur_integrator!(integrator)
          isempty(integrator.opts.saveat_cache)))
         integrator.saveiter += 1
         copyat_or_push!(integrator.sol.t, integrator.saveiter, integrator.t)
-        if integrator.opts.save_idxs === nothing
+        if isnothing(integrator.opts.save_idxs)
             copyat_or_push!(integrator.sol.u, integrator.saveiter, integrator.u)
         else
             copyat_or_push!(integrator.sol.u, integrator.saveiter,
@@ -177,7 +177,7 @@ function solution_endpoint_match_cur_integrator!(integrator)
         if typeof(integrator.alg) <: FunctionMap || integrator.opts.dense
             integrator.saveiter_dense += 1
             if integrator.opts.dense
-                if integrator.opts.save_idxs === nothing
+                if isnothing(integrator.opts.save_idxs)
                     copyat_or_push!(integrator.sol.k, integrator.saveiter_dense,
                         integrator.k)
                 else

@@ -147,7 +147,7 @@ function gen_tableau(tab::RosenbrockTableau,tabstructexpr::Expr,tabname::Symbol)
             push!(valsyms, valsym)
             m = match(pattern, String(valsym))
             val = valsym2tabdict[m[1]][(parse(Int, i) for i in m[2])...]
-            push!(assignexprs, :($valsym = convert($valtype, $val)))
+            push!(assignexprs, :($valsym::$valtype = $val))
         end
     end
     quote function $tabname(T, T2)
@@ -217,7 +217,7 @@ function gen_algcache(cacheexpr::Expr,constcachename::Symbol,algname::Symbol,tab
         if @capture(field, valsym_Symbol::valtype_)
             push!(valsyms, valsym)
 
-            if match(r"^k[1-9]+$", String(valsym)) !== nothing
+            if match(r"^k[1-9]+$", !isnothing(String(valsym)))
                 push!(ksinit, :($valsym = zero(rate_prototype)))
             end
         end

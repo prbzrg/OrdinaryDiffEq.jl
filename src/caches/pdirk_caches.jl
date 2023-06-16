@@ -24,24 +24,24 @@ struct PDIRK44Tableau{T, T2}
 end
 
 function PDIRK44Tableau(T, T2)
-    γ1 = convert(T2, 1 // 2)
-    γ2 = convert(T2, 2 // 3)
+    γ1::T2 = 1 // 2
+    γ2::T2 = 2 // 3
     γs = SVector(γ1, γ2)
-    c1 = convert(T2, 1 // 2)
-    c2 = convert(T2, 2 // 3)
-    c3 = convert(T2, 1 // 2)
-    c4 = convert(T2, 1 // 3)
+    c1::T2 = 1 // 2
+    c2::T2 = 2 // 3
+    c3::T2 = 1 // 2
+    c4::T2 = 1 // 3
     cs = SVector(c1, c2, c3, c4)
-    α11 = convert(T, -5 // 2)
-    α12 = convert(T, -5 // 3)
+    α11::T = -5 // 2
+    α12::T = -5 // 3
     α1 = SVector(α11, α12)
-    α21 = convert(T, 5 // 2)
-    α22 = convert(T, 4 // 3)
+    α21::T = 5 // 2
+    α22::T = 4 // 3
     α2 = SVector(α21, α22)
-    b1 = convert(T, -1 // 1)
-    b2 = convert(T, -1 // 1)
-    b3 = convert(T, 3 // 2)
-    b4 = convert(T, 3 // 2)
+    b1::T = -1 // 1
+    b2::T = -1 // 1
+    b3::T = 3 // 2
+    b4::T = 3 // 2
     PDIRK44Tableau{T, T2}(γs, cs, α1, α2, b1, b2, b3, b4)
 end
 

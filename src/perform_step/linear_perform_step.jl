@@ -821,7 +821,7 @@ function perform_step!(integrator, cache::CayleyEulerConstantCache, repeat_step 
     end
 
     L = update_coefficients(A, uprev, p, t)
-    L = convert(AbstractMatrix, L)
+    L::AbstractMatrix = L
 
     V = cay(L * dt)
     u = (V * uprev) * transpose(V)
@@ -857,7 +857,7 @@ function perform_step!(integrator, cache::CayleyEulerCache, repeat_step = false)
     end
 
     update_coefficients!(L, uprev, p, t)
-    L = convert(AbstractMatrix, L)
+    L::AbstractMatrix = L
 
     cay!(V, L * dt)
     mul!(tmp, uprev, transpose(V))

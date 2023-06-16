@@ -279,7 +279,7 @@ function WOperator{IIP}(f, u, gamma; transform = false) where {IIP}
     mass_matrix = f.mass_matrix
     # TODO: does this play nicely with time-state dependent mass matrix?
     if !isa(mass_matrix, Union{AbstractMatrix, UniformScaling})
-        mass_matrix = convert(AbstractMatrix, mass_matrix)
+        mass_matrix::AbstractMatrix = mass_matrix
     end
     # Convert jacobian, if needed
     J = deepcopy(f.jac_prototype)
@@ -385,7 +385,7 @@ function LinearAlgebra.mul!(Y::AbstractVecOrMat, W::WOperator, B::AbstractVecOrM
             lmul!(-1 / W.gamma, Y)
         end
         # Compute J * B and add
-        if W.jacvec !== nothing
+        if !isnothing(W.jacvec)
             mul!(_vec(W._func_cache), W.jacvec, _vec(B))
         else
             mul!(_vec(W._func_cache), W.J, _vec(B))
@@ -401,7 +401,7 @@ function LinearAlgebra.mul!(Y::AbstractVecOrMat, W::WOperator, B::AbstractVecOrM
             mul!(_vec(Y), W.mass_matrix, _vec(B))
         end
         # Compute J * B
-        if W.jacvec !== nothing
+        if !isnothing(W.jacvec)
             mul!(_vec(W._func_cache), W.jacvec, _vec(B))
         else
             mul!(_vec(W._func_cache), W.J, _vec(B))
@@ -621,7 +621,7 @@ end
 function calc_W!(W, integrator, nlsolver::Union{Nothing, AbstractNLSolver}, cache, dtgamma,
     repeat_step, W_transform = false, newJW = nothing)
     @unpack t, dt, uprev, u, f, p = integrator
-    lcache = nlsolver === nothing ? cache : nlsolver.cache
+    lcache = isnothing(nlsolver) ? cache : nlsolver.cache
     next_step = is_always_new(nlsolver)
     if next_step
         t = t + integrator.dt
@@ -656,7 +656,7 @@ function calc_W!(W, integrator, nlsolver::Union{Nothing, AbstractNLSolver}, cach
     end
 
     # check if we need to update J or W
-    if newJW === nothing
+    if isnothing(newJW)
         new_jac, new_W = do_newJW(integrator, alg, nlsolver, repeat_step)
     else
         new_jac, new_W = newJW
@@ -676,7 +676,7 @@ function calc_W!(W, integrator, nlsolver::Union{Nothing, AbstractNLSolver}, cach
         isnewton(nlsolver) || update_coefficients!(W, uprev, p, t) # we will call `update_coefficients!` in NLNewton
         W.transform = W_transform
         set_gamma!(W, dtgamma)
-        if W.J !== nothing && !(W.J isa AbstractSciMLOperator)
+        if !isnothing(W.J) && !(W.J isa AbstractSciMLOperator)
             islin, isode = islinearfunction(integrator)
             islin ? (J = isode ? f.f : f.f1.f) :
             (new_jac && (calc_J!(W.J, integrator, lcache, next_step)))
@@ -754,7 +754,7 @@ end
             len = StaticArrayInterface.known_length(typeof(W_full))
             W = if W_full isa Number
                 W_full
-            elseif len !== nothing &&
+            elseif !isnothing(len) &&
                    typeof(integrator.alg) <:
                    Union{Rosenbrock23, Rodas4, Rodas4P, Rodas4P2, Rodas5, Rodas5P}
                 StaticWOperator(W_full)
@@ -834,16 +834,16 @@ function build_J_W(alg, u, uprev, p, t, dt, f::F, ::Type{uEltypeNoUnits},
     if f.jac_prototype isa AbstractSciMLOperator
         W = WOperator{IIP}(f, u, dt)
         J = W.J
-    elseif IIP && f.jac_prototype !== nothing && concrete_jac(alg) === nothing &&
-           (alg.linsolve === nothing ||
-            alg.linsolve !== nothing &&
-            LinearSolve.needs_concrete_A(alg.linsolve))
+    elseif IIP && !isnothing(f.jac_prototype) && isnothing(concrete_jac(alg)) &&
+           isnothing((alg.linsolve) ||
+                     !isnothing(alg.linsolve) &&
+                     LinearSolve.needs_concrete_A(alg.linsolve))
 
         # If factorization, then just use the jac_prototype
         J = similar(f.jac_prototype)
         W = similar(J)
-    elseif (IIP && (concrete_jac(alg) === nothing || !concrete_jac(alg)) &&
-            alg.linsolve !== nothing &&
+    elseif (IIP && isnothing((concrete_jac(alg)) || !concrete_jac(alg)) &&
+            !isnothing(alg.linsolve) &&
             !LinearSolve.needs_concrete_A(alg.linsolve))
         # If the user has chosen GMRES but no sparse Jacobian, assume that the dense
         # Jacobian is a bad idea and create a fully matrix-free solver. This can
@@ -855,13 +855,13 @@ function build_J_W(alg, u, uprev, p, t, dt, f::F, ::Type{uEltypeNoUnits},
         J = jacvec
         W = WOperator{IIP}(f.mass_matrix, dt, J, u, jacvec)
 
-    elseif alg.linsolve !== nothing && !LinearSolve.needs_concrete_A(alg.linsolve) ||
-           concrete_jac(alg) !== nothing && concrete_jac(alg)
+    elseif !isnothing(alg.linsolve) && !LinearSolve.needs_concrete_A(alg.linsolve) ||
+           !isnothing(concrete_jac(alg)) && concrete_jac(alg)
         # The linear solver does not need a concrete Jacobian, but the user has
         # asked for one. This will happen when the Jacobian is used in the preconditioner
         # Thus setup JacVec and a concrete J, using sparsity when possible
         _f = islin ? (isode ? f.f : f.f1.f) : f
-        J = if f.jac_prototype === nothing
+        J = if isnothing(f.jac_prototype)
             ArrayInterface.undefmatrix(u)
         else
             deepcopy(f.jac_prototype)
@@ -877,7 +877,7 @@ function build_J_W(alg, u, uprev, p, t, dt, f::F, ::Type{uEltypeNoUnits},
         end
         W = WOperator{IIP}(f.mass_matrix, dt, J, u)
     else
-        J = if f.jac_prototype === nothing
+        J = if isnothing(f.jac_prototype)
             ArrayInterface.undefmatrix(u)
         else
             deepcopy(f.jac_prototype)
@@ -889,7 +889,7 @@ function build_J_W(alg, u, uprev, p, t, dt, f::F, ::Type{uEltypeNoUnits},
             similar(J)
         else
             len = StaticArrayInterface.known_length(typeof(J))
-            if len !== nothing &&
+            if !isnothing(len) &&
                typeof(alg) <:
                Union{Rosenbrock23, Rodas4, Rodas4P, Rodas4P2, Rodas5, Rodas5P}
                 StaticWOperator(J, false)

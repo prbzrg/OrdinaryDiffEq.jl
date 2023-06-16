@@ -206,7 +206,7 @@ function resize!(integrator::ODEIntegrator, i::Int)
     for c in full_cache(cache)
         # Skip nothings which may exist in the cache since extra variables
         # may be required for things like units
-        c !== nothing && resize!(c, i)
+        !isnothing(c) && resize!(c, i)
     end
     resize_nlsolver!(integrator, i)
     resize_J_W!(cache, integrator, i)
@@ -236,7 +236,7 @@ function resize_J_W!(cache, integrator, i)
         if !islin
             if cache.J isa AbstractSciMLOperator
                 resize!(cache.J, i)
-            elseif f.jac_prototype !== nothing
+            elseif !isnothing(f.jac_prototype)
                 J = similar(f.jac_prototype, i, i)
                 J = MatrixOperator(J; update_func! = f.jac)
             end
@@ -252,7 +252,7 @@ function resize_J_W!(cache, integrator, i)
             cache.J = cache.W.J
         end
     else
-        if cache.J !== nothing
+        if !isnothing(cache.J)
             cache.J = similar(cache.J, i, i)
         end
         cache.W = similar(cache.W, i, i)
@@ -386,14 +386,14 @@ function DiffEqBase.reinit!(integrator::ODEIntegrator, u0 = integrator.sol.prob.
 
         if integrator.opts.save_start || (!isempty(saveat) && saveat[1] == tType(t0))
             copyat_or_push!(integrator.sol.t, 1, t0)
-            if integrator.opts.save_idxs === nothing
+            if isnothing(integrator.opts.save_idxs)
                 copyat_or_push!(integrator.sol.u, 1, u0)
             else
                 u_initial = u0[integrator.opts.save_idxs]
                 copyat_or_push!(integrator.sol.u, 1, u_initial, Val{false})
             end
         end
-        if integrator.sol.u_analytic !== nothing
+        if !isnothing(integrator.sol.u_analytic)
             resize!(integrator.sol.u_analytic, 0)
         end
         if typeof(integrator.alg) <: OrdinaryDiffEqCompositeAlgorithm

@@ -217,7 +217,7 @@ vcondition = function (out, u, t, integrator)
 end
 
 affect! = function (integrator, retcode = nothing)
-    if retcode === nothing
+    if isnothing(retcode)
         terminate!(integrator)
     else
         terminate!(integrator, retcode)
@@ -226,7 +226,7 @@ end
 
 vaffect! = function (integrator, idx, retcode = nothing)
     if idx == 1
-        if retcode === nothing
+        if isnothing(retcode)
             terminate!(integrator)
         else
             terminate!(integrator, retcode)

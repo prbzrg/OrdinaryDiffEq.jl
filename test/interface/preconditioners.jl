@@ -56,7 +56,7 @@ prob_ode_brusselator_2d_sparse = ODEProblem(ODEFunction(brusselator_2d_loop,
     u0, (0.0, 11.5), p)
 
 function incompletelu(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
-    if newW === nothing || newW
+    if isnothing(newW) || newW
         Pl = ilu(convert(AbstractMatrix, W), τ = 50.0)
     else
         Pl = Plprev
@@ -65,7 +65,7 @@ function incompletelu(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
 end
 
 function algebraicmultigrid(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
-    if newW === nothing || newW
+    if isnothing(newW) || newW
         Pl = AlgebraicMultigrid.aspreconditioner(AlgebraicMultigrid.ruge_stuben(convert(AbstractMatrix,
             W)))
     else
@@ -75,8 +75,8 @@ function algebraicmultigrid(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
 end
 
 function algebraicmultigrid2(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
-    if newW === nothing || newW
-        A = convert(AbstractMatrix, W)
+    if isnothing(newW) || newW
+        A::AbstractMatrix = W
         Pl = AlgebraicMultigrid.aspreconditioner(AlgebraicMultigrid.ruge_stuben(A,
             presmoother = AlgebraicMultigrid.Jacobi(rand(size(A,
                 1))),

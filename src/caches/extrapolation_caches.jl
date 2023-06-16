@@ -232,7 +232,7 @@ function alg_cache(alg::ImplicitEulerExtrapolation, u, rate_prototype,
     du1 = zero(rate_prototype)
     du2 = zero(rate_prototype)
 
-    if DiffEqBase.has_jac(f) && !DiffEqBase.has_Wfact(f) && f.jac_prototype !== nothing
+    if DiffEqBase.has_jac(f) && !DiffEqBase.has_Wfact(f) && !isnothing(f.jac_prototype)
         W_el = WOperator(f, dt, true)
         J = nothing # is J = W.J better?
     else
@@ -1120,7 +1120,7 @@ function alg_cache(alg::ImplicitDeuflhardExtrapolation, u, rate_prototype,
     du1 = zero(rate_prototype)
     du2 = zero(rate_prototype)
 
-    if DiffEqBase.has_jac(f) && !DiffEqBase.has_Wfact(f) && f.jac_prototype !== nothing
+    if DiffEqBase.has_jac(f) && !DiffEqBase.has_Wfact(f) && !isnothing(f.jac_prototype)
         W_el = WOperator(f, dt, true)
         J = nothing # is J = W.J better?
     else
@@ -1447,7 +1447,7 @@ function alg_cache(alg::ImplicitHairerWannerExtrapolation, u, rate_prototype,
     du1 = zero(rate_prototype)
     du2 = zero(rate_prototype)
 
-    if DiffEqBase.has_jac(f) && !DiffEqBase.has_Wfact(f) && f.jac_prototype !== nothing
+    if DiffEqBase.has_jac(f) && !DiffEqBase.has_Wfact(f) && !isnothing(f.jac_prototype)
         W_el = WOperator(f, dt, true)
         J = nothing # is J = W.J better?
     else
@@ -1643,7 +1643,7 @@ function alg_cache(alg::ImplicitEulerBarycentricExtrapolation, u, rate_prototype
     du1 = zero(rate_prototype)
     du2 = zero(rate_prototype)
 
-    if DiffEqBase.has_jac(f) && !DiffEqBase.has_Wfact(f) && f.jac_prototype !== nothing
+    if DiffEqBase.has_jac(f) && !DiffEqBase.has_Wfact(f) && !isnothing(f.jac_prototype)
         W_el = WOperator(f, dt, true)
         J = nothing # is J = W.J better?
     else

@@ -233,22 +233,23 @@ function DiffEqBase.prepare_alg(alg::Union{
     p, prob) where {AD, FDT, T}
     if alg isa OrdinaryDiffEqExponentialAlgorithm
         linsolve = nothing
-    elseif alg.linsolve === nothing
+    elseif isnothing(alg.linsolve)
         if (prob.f isa ODEFunction && prob.f.f isa AbstractSciMLOperator)
             linsolve = LinearSolve.defaultalg(prob.f.f, u0)
         elseif (prob.f isa SplitFunction &&
                 prob.f.f1.f isa AbstractSciMLOperator)
             linsolve = LinearSolve.defaultalg(prob.f.f1.f, u0)
-            if (linsolve === nothing) || (linsolve isa LinearSolve.DefaultLinearSolver &&
+            if isnothing((linsolve)) || (linsolve isa LinearSolve.DefaultLinearSolver &&
                 linsolve.alg !== LinearSolve.DefaultAlgorithmChoice.KrylovJL_GMRES)
                 msg = "Split ODE problem do not work with factorization linear solvers. Bug detailed in https://github.com/SciML/OrdinaryDiffEq.jl/pull/1643. Defaulting to linsolve=KrylovJL()"
                 @warn msg
                 linsolve = KrylovJL_GMRES()
             end
         elseif (prob isa ODEProblem || prob isa DDEProblem) &&
-               (prob.f.mass_matrix === nothing ||
-                (prob.f.mass_matrix !== nothing &&
-                 !(typeof(prob.f.jac_prototype) <: AbstractSciMLOperator)))
+               isnothing((prob.f.mass_matrix) ||
+                         !isnothing((prob.f.mass_matrix) &&
+                                    !(typeof(prob.f.jac_prototype) <:
+                                      AbstractSciMLOperator)))
             linsolve = LinearSolve.defaultalg(prob.f.jac_prototype, u0)
         else
             # If mm is a sparse matrix and A is a MatrixOperator, then let linear
@@ -272,11 +273,11 @@ function DiffEqBase.prepare_alg(alg::Union{
     end
 
     L = StaticArrayInterface.known_length(typeof(u0))
-    if L === nothing # dynamic sized
+    if isnothing(L) # dynamic sized
 
         # If chunksize is zero, pick chunksize right at the start of solve and
         # then do function barrier to infer the full solve
-        x = if prob.f.colorvec === nothing
+        x = if isnothing(prob.f.colorvec)
             length(u0)
         else
             maximum(prob.f.colorvec)
@@ -787,17 +788,18 @@ function default_controller(alg::Union{ExtrapolationMidpointDeuflhard,
     return ExtrapolationController(beta1)
 end
 
-function _digest_beta1_beta2(alg, cache, ::Val{QT}, _beta1, _beta2) where {QT}
+function _digest_beta1_beta2(alg, cache, ::Val{QT}, _beta1,
+    _beta2)::Tuple{Vararg{QT}} where {QT}
     if typeof(alg) <: OrdinaryDiffEqCompositeAlgorithm
-        beta2 = _beta2 === nothing ?
+        beta2 = isnothing(_beta2) ?
                 _composite_beta2_default(alg.algs, cache.current, Val(QT)) : _beta2
-        beta1 = _beta1 === nothing ?
+        beta1 = isnothing(_beta1) ?
                 _composite_beta1_default(alg.algs, cache.current, Val(QT), beta2) : _beta1
     else
-        beta2 = _beta2 === nothing ? beta2_default(alg) : _beta2
-        beta1 = _beta1 === nothing ? beta1_default(alg, beta2) : _beta1
+        beta2 = isnothing(_beta2) ? beta2_default(alg) : _beta2
+        beta1 = isnothing(_beta1) ? beta1_default(alg, beta2) : _beta1
     end
-    return convert(QT, beta1)::QT, convert(QT, beta2)::QT
+    beta1, beta2
 end
 
 function default_controller(alg::RDPK3Sp35, cache, qoldinit, args...)
@@ -963,7 +965,7 @@ function unwrap_alg(alg::SciMLBase.DEAlgorithm, is_stiff)
     if !iscomp
         return alg
     elseif typeof(alg.choice_function) <: AutoSwitchCache
-        if is_stiff === nothing
+        if isnothing(is_stiff)
             throwautoswitch(alg)
         end
         num = is_stiff ? 2 : 1
@@ -983,7 +985,7 @@ function unwrap_alg(integrator, is_stiff)
     if !iscomp
         return alg
     elseif typeof(alg.choice_function) <: AutoSwitchCache
-        if is_stiff === nothing
+        if isnothing(is_stiff)
             throwautoswitch(alg)
         end
         num = is_stiff ? 2 : 1

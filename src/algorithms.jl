@@ -68,7 +68,7 @@ function DiffEqBase.remake(thing::Union{
     T = SciMLBase.remaker_of(thing)
     T(; SciMLBase.struct_as_namedtuple(thing)...,
         chunk_size = Val{CS}(), autodiff = Val{AD}(), standardtag = Val{ST}(),
-        concrete_jac = CJ === nothing ? CJ : Val{CJ}(),
+        concrete_jac = isnothing(CJ) ? CJ : Val{CJ}(),
         linsolve = linsolve,
         kwargs...)
 end
@@ -135,8 +135,8 @@ function ImplicitEulerExtrapolation(; chunk_size = Val{0}(), autodiff = true,
     precs = DEFAULT_PRECS,
     max_order = 12, min_order = 3, init_order = 5,
     threading = false, sequence = :harmonic)
-    linsolve = (linsolve === nothing &&
-                (threading == true || threading isa PolyesterThreads)) ?
+    linsolve = isnothing((linsolve) &&
+                         (threading == true || threading isa PolyesterThreads)) ?
                RFLUFactorization(; thread = Val(false)) : linsolve
 
     min_order = max(3, min_order)
@@ -247,8 +247,8 @@ function ImplicitDeuflhardExtrapolation(; chunk_size = Val{0}(), autodiff = Val{
     init_order = max(min_order, init_order)
     max_order = max(init_order, max_order)
 
-    linsolve = (linsolve === nothing &&
-                (threading == true || threading isa PolyesterThreads)) ?
+    linsolve = isnothing((linsolve) &&
+                         (threading == true || threading isa PolyesterThreads)) ?
                RFLUFactorization(; thread = Val(false)) : linsolve
 
     # Warn user if orders have been changed
@@ -362,8 +362,8 @@ function ImplicitHairerWannerExtrapolation(; chunk_size = Val{0}(), autodiff = V
     init_order = max(min_order + 1, init_order)
     max_order = max(init_order + 1, max_order)
 
-    linsolve = (linsolve === nothing &&
-                (threading == true || threading isa PolyesterThreads)) ?
+    linsolve = isnothing((linsolve) &&
+                         (threading == true || threading isa PolyesterThreads)) ?
                RFLUFactorization(; thread = Val(false)) : linsolve
 
     # Warn user if orders have been changed
@@ -426,8 +426,8 @@ function ImplicitEulerBarycentricExtrapolation(; chunk_size = Val{0}(),
     init_order = max(min_order + 1, init_order)
     max_order = max(init_order + 1, max_order)
 
-    linsolve = (linsolve === nothing &&
-                (threading == true || threading isa PolyesterThreads)) ?
+    linsolve = isnothing((linsolve) &&
+                         (threading == true || threading isa PolyesterThreads)) ?
                RFLUFactorization(; thread = Val(false)) : linsolve
 
     # Warn user if orders have been changed

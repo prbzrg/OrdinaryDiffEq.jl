@@ -65,69 +65,69 @@ struct FineRKN5ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function FineRKN5ConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 1)
-    c2 = convert(T2, 8 // 39)
-    c3 = convert(T2, 4 // 13)
-    c4 = convert(T2, 5 // 6)
-    c5 = convert(T2, 43 // 47)
-    c6 = convert(T2, 1 // 1) # 36463 // 36464
-    c7 = convert(T2, 1 // 1)
-    a21 = convert(T, 32 // 1521)
-    a31 = convert(T, 4 // 169)
-    a32 = convert(T, 4 // 169)
-    a41 = convert(T, 175 // 5184)
-    #a42 = convert(T, 0 // 1)
-    a43 = convert(T, 1625 // 5184)
-    a51 = convert(T, -342497279 // 5618900760)
-    a52 = convert(T, 6827067 // 46824173)
-    a53 = convert(T, 35048741 // 102161832)
-    a54 = convert(T, -2201514 // 234120865)
-    a61 = convert(T, -7079 // 52152)
-    a62 = convert(T, 767 // 2173)
-    a63 = convert(T, 14027 // 52152)
-    a64 = convert(T, 30 // 2173)
-    #a65 = convert(T, 0 // 1)
-    a71 = convert(T, 4817 // 51600)
-    #a72 = convert(T, 0 // 1)
-    a73 = convert(T, 388869 // 1216880)
-    a74 = convert(T, 3276 // 23575)
-    a75 = convert(T, -1142053 // 22015140)
-    #a76 = convert(T, 0 // 1)
-    abar21 = convert(T, 8 // 39)
-    abar31 = convert(T, 1 // 13)
-    abar32 = convert(T, 3 // 13)
-    abar41 = convert(T, 7385 // 6912)
-    abar42 = convert(T, -9425 // 2304)
-    abar43 = convert(T, 13325 // 3456)
-    abar51 = convert(T, 223324757 // 91364240)
-    abar52 = convert(T, -174255393 // 18272848)
-    abar53 = convert(T, 382840094 // 46824173)
-    abar54 = convert(T, -39627252 // 234120865)
-    abar61 = convert(T, 108475 // 36464)
-    abar62 = convert(T, -9633 // 848)
-    abar63 = convert(T, 7624604 // 806183)
-    abar64 = convert(T, 8100 // 49979)
-    abar65 = convert(T, -4568212 // 19446707)
-    abar71 = convert(T, 4817 // 51600)
-    #abar72 = convert(T, 0 // 1)
-    abar73 = convert(T, 1685099 // 3650640)
-    abar74 = convert(T, 19656 // 23575)
-    abar75 = convert(T, -53676491 // 88060560)
-    abar76 = convert(T, 53 // 240)
-    b1 = convert(T, 4817 // 51600)
-    #b2 = convert(T, 0 // 1)
-    b3 = convert(T, 388869 // 1216880)
-    b4 = convert(T, 3276 // 23575)
-    b5 = convert(T, -1142053 // 22015140)
-    #b6 = convert(T, 0 // 1)
-    #b7 = convert(T, 0 // 1)
-    bbar1 = convert(T, 4817 // 51600)
-    #bbar2 = convert(T, 0 // 1)
-    bbar3 = convert(T, 1685099 // 3650640)
-    bbar4 = convert(T, 19656 // 23575)
-    bbar5 = convert(T, -53676491 // 88060560)
-    bbar6 = convert(T, 53 // 240)
-    #bbar7 = convert(T, 0 // 1)
+    c1::T2 = 1 // 1
+    c2::T2 = 8 // 39
+    c3::T2 = 4 // 13
+    c4::T2 = 5 // 6
+    c5::T2 = 43 // 47
+    c6::T2 = 1 // 1 # 36463 // 36464
+    c7::T2 = 1 // 1
+    a21::T = 32 // 1521
+    a31::T = 4 // 169
+    a32::T = 4 // 169
+    a41::T = 175 // 5184
+    #a42::T = 0 // 1
+    a43::T = 1625 // 5184
+    a51::T = -342497279 // 5618900760
+    a52::T = 6827067 // 46824173
+    a53::T = 35048741 // 102161832
+    a54::T = -2201514 // 234120865
+    a61::T = -7079 // 52152
+    a62::T = 767 // 2173
+    a63::T = 14027 // 52152
+    a64::T = 30 // 2173
+    #a65::T = 0 // 1
+    a71::T = 4817 // 51600
+    #a72::T = 0 // 1
+    a73::T = 388869 // 1216880
+    a74::T = 3276 // 23575
+    a75::T = -1142053 // 22015140
+    #a76::T = 0 // 1
+    abar21::T = 8 // 39
+    abar31::T = 1 // 13
+    abar32::T = 3 // 13
+    abar41::T = 7385 // 6912
+    abar42::T = -9425 // 2304
+    abar43::T = 13325 // 3456
+    abar51::T = 223324757 // 91364240
+    abar52::T = -174255393 // 18272848
+    abar53::T = 382840094 // 46824173
+    abar54::T = -39627252 // 234120865
+    abar61::T = 108475 // 36464
+    abar62::T = -9633 // 848
+    abar63::T = 7624604 // 806183
+    abar64::T = 8100 // 49979
+    abar65::T = -4568212 // 19446707
+    abar71::T = 4817 // 51600
+    #abar72::T = 0 // 1
+    abar73::T = 1685099 // 3650640
+    abar74::T = 19656 // 23575
+    abar75::T = -53676491 // 88060560
+    abar76::T = 53 // 240
+    b1::T = 4817 // 51600
+    #b2::T = 0 // 1
+    b3::T = 388869 // 1216880
+    b4::T = 3276 // 23575
+    b5::T = -1142053 // 22015140
+    #b6::T = 0 // 1
+    #b7::T = 0 // 1
+    bbar1::T = 4817 // 51600
+    #bbar2::T = 0 // 1
+    bbar3::T = 1685099 // 3650640
+    bbar4::T = 19656 // 23575
+    bbar5::T = -53676491 // 88060560
+    bbar6::T = 53 // 240
+    #bbar7::T = 0 // 1
     FineRKN5ConstantCache(c1, c2, c3, c4, c5, c6, c7, a21, a31, a32, a41, a43, a51,
         a52, a53, a54, a61, a62, a63, a64, a71, a73, a74, a75,
         abar21, abar31, abar32, abar41, abar42, abar43, abar51,
@@ -148,26 +148,26 @@ struct IRKN3ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function IRKN3ConstantCache(T::Type{<:CompiledFloats}, T2::Type{<:CompiledFloats})
-    bconst1 = convert(T, 1.5)
-    bconst2 = convert(T, -0.5)
-    c1 = convert(T2, 0.5)
-    a21 = convert(T, 0.125)
-    b1 = convert(T, 0.6666666666666666)
-    b2 = convert(T, 0.8333333333333334)
-    bbar1 = convert(T, 0.3333333333333333)
-    bbar2 = convert(T, 0.4166666666666667)
+    bconst1::T = 1.5
+    bconst2::T = -0.5
+    c1::T2 = 0.5
+    a21::T = 0.125
+    b1::T = 0.6666666666666666
+    b2::T = 0.8333333333333334
+    bbar1::T = 0.3333333333333333
+    bbar2::T = 0.4166666666666667
     IRKN3ConstantCache(bconst1, bconst2, c1, a21, b1, b2, bbar1, bbar2)
 end
 
 function IRKN3ConstantCache(T::Type, T2::Type)
-    bconst1 = convert(T, 3 // 2)
-    bconst2 = convert(T, -1 // 2)
-    c1 = convert(T2, 1 // 2)
-    a21 = convert(T, 1 // 8)
-    b1 = convert(T, 2 // 3)
-    b2 = convert(T, 5 // 6)
-    bbar1 = convert(T, 1 // 3)
-    bbar2 = convert(T, 5 // 12)
+    bconst1::T = 3 // 2
+    bconst2::T = -1 // 2
+    c1::T2 = 1 // 2
+    a21::T = 1 // 8
+    b1::T = 2 // 3
+    b2::T = 5 // 6
+    bbar1::T = 1 // 3
+    bbar2::T = 5 // 12
     IRKN3ConstantCache(bconst1, bconst2, c1, a21, b1, b2, bbar1, bbar2)
 end
 
@@ -188,36 +188,36 @@ struct IRKN4ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function IRKN4ConstantCache(T::Type{<:CompiledFloats}, T2::Type{<:CompiledFloats})
-    bconst1 = convert(T, 1.5)
-    bconst2 = convert(T, -0.5)
-    c1 = convert(T2, 0.25)
-    c2 = convert(T2, 0.75)
-    a21 = convert(T, 0.03125)
+    bconst1::T = 1.5
+    bconst2::T = -0.5
+    c1::T2 = 0.25
+    c2::T2 = 0.75
+    a21::T = 0.03125
     # a31     = convert(T,0)
-    a32 = convert(T, 0.28125)
-    b1 = convert(T, 1.0555555555555556)
-    b2 = convert(T, -0.16666666666666666)
-    b3 = convert(T, 0.6111111111111112)
-    bbar1 = convert(T, -0.05555555555555555)
-    bbar2 = convert(T, 0.2916666666666667)
-    bbar3 = convert(T, 0.125)
+    a32::T = 0.28125
+    b1::T = 1.0555555555555556
+    b2::T = -0.16666666666666666
+    b3::T = 0.6111111111111112
+    bbar1::T = -0.05555555555555555
+    bbar2::T = 0.2916666666666667
+    bbar3::T = 0.125
     IRKN4ConstantCache(bconst1, bconst2, c1, c2, a21, a32, b1, b2, b3, bbar1, bbar2, bbar3)
 end
 
 function IRKN4ConstantCache(T::Type, T2::Type)
-    bconst1 = convert(T, 3 // 2)
-    bconst2 = convert(T, -1 // 2)
-    c1 = convert(T2, 1 // 4)
-    c2 = convert(T2, 3 // 4)
-    a21 = convert(T, 1 // 32)
+    bconst1::T = 3 // 2
+    bconst2::T = -1 // 2
+    c1::T2 = 1 // 4
+    c2::T2 = 3 // 4
+    a21::T = 1 // 32
     # a31     = convert(T,0)
-    a32 = convert(T, 9 // 32)
-    b1 = convert(T, 19 // 18)
-    b2 = convert(T, -1 // 6)
-    b3 = convert(T, 11 // 18)
-    bbar1 = convert(T, -1 // 18)
-    bbar2 = convert(T, 7 // 24)
-    bbar3 = convert(T, 1 // 8)
+    a32::T = 9 // 32
+    b1::T = 19 // 18
+    b2::T = -1 // 6
+    b3::T = 11 // 18
+    bbar1::T = -1 // 18
+    bbar2::T = 7 // 24
+    bbar3::T = 1 // 8
     IRKN4ConstantCache(bconst1, bconst2, c1, c2, a21, a32, b1, b2, b3, bbar1, bbar2, bbar3)
 end
 
@@ -241,43 +241,43 @@ end
 
 function Nystrom5VelocityIndependentConstantCache(T::Type{<:CompiledFloats},
     T2::Type{<:CompiledFloats})
-    c1 = convert(T2, 0.2)
-    c2 = convert(T2, 0.6666666666666666)
+    c1::T2 = 0.2
+    c2::T2 = 0.6666666666666666
     # c3    = convert(T2,1)
-    a21 = convert(T, 0.02)
-    a31 = convert(T, -0.037037037037037035)
-    a32 = convert(T, 0.25925925925925924)
-    a41 = convert(T, 0.3)
-    a42 = convert(T, -0.05714285714285714)
-    a43 = convert(T, 0.2571428571428571)
-    bbar1 = convert(T, 0.041666666666666664)
-    bbar2 = convert(T, 0.2976190476190476)
-    bbar3 = convert(T, 0.16071428571428573)
+    a21::T = 0.02
+    a31::T = -0.037037037037037035
+    a32::T = 0.25925925925925924
+    a41::T = 0.3
+    a42::T = -0.05714285714285714
+    a43::T = 0.2571428571428571
+    bbar1::T = 0.041666666666666664
+    bbar2::T = 0.2976190476190476
+    bbar3::T = 0.16071428571428573
     b1 = bbar1
-    b2 = convert(T, 0.37202380952380953)
-    b3 = convert(T, 0.48214285714285715)
-    b4 = convert(T, 0.10416666666666667)
+    b2::T = 0.37202380952380953
+    b3::T = 0.48214285714285715
+    b4::T = 0.10416666666666667
     Nystrom5VelocityIndependentConstantCache(c1, c2, a21, a31, a32, a41, a42, a43, bbar1,
         bbar2, bbar3, b1, b2, b3, b4)
 end
 
 function Nystrom5VelocityIndependentConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 5)
-    c2 = convert(T2, 2 // 3)
+    c1::T2 = 1 // 5
+    c2::T2 = 2 // 3
     # c3    = convert(T2,1)
-    a21 = convert(T, 1 // 50)
-    a31 = convert(T, -1 // 27)
-    a32 = convert(T, 7 // 27)
-    a41 = convert(T, 3 // 10)
-    a42 = convert(T, -2 // 35)
-    a43 = convert(T, 9 // 35)
-    bbar1 = convert(T, 14 // 336)
-    bbar2 = convert(T, 100 // 336)
-    bbar3 = convert(T, 54 // 336)
+    a21::T = 1 // 50
+    a31::T = -1 // 27
+    a32::T = 7 // 27
+    a41::T = 3 // 10
+    a42::T = -2 // 35
+    a43::T = 9 // 35
+    bbar1::T = 14 // 336
+    bbar2::T = 100 // 336
+    bbar3::T = 54 // 336
     b1 = bbar1
-    b2 = convert(T, 125 // 336)
-    b3 = convert(T, 162 // 336)
-    b4 = convert(T, 35 // 336)
+    b2::T = 125 // 336
+    b3::T = 162 // 336
+    b4::T = 35 // 336
     Nystrom5VelocityIndependentConstantCache(c1, c2, a21, a31, a32, a41, a42, a43, bbar1,
         bbar2, bbar3, b1, b2, b3, b4)
 end
@@ -311,31 +311,31 @@ struct ERKN4ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function ERKN4ConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 4)
-    c2 = convert(T2, 7 // 10)
-    c3 = convert(T2, 1)
-    a21 = convert(T, 1 // 32)
-    a31 = convert(T, 19 // 600)
-    a32 = convert(T, 16 // 75)
-    a41 = convert(T, 32 // 315)
-    a42 = convert(T, 58 // 315)
-    a43 = convert(T, 3 // 14)
-    btilde1 = convert(T, 1 // 21 - 14 // 375)
-    btilde2 = convert(T, 28 // 81 - 136 // 375)
-    btilde3 = convert(T, 50 // 567 - 2 // 25)
-    btilde4 = convert(T, 1 // 54 - 1 // 50)
-    bptilde1 = convert(T, 1 // 14 - 17 // 231)
-    bptilde2 = convert(T, 32 // 81 - 116 // 297)
-    bptilde3 = convert(T, 250 // 567 - 925 // 2079)
-    bptilde4 = convert(T, 5 // 54 - 1 // 11)
-    b1 = convert(T, 1 // 21)
-    b2 = convert(T, 28 // 81)
-    b3 = convert(T, 50 // 567)
-    b4 = convert(T, 1 // 54)
-    bp1 = convert(T, 1 // 14)
-    bp2 = convert(T, 32 // 81)
-    bp3 = convert(T, 250 // 567)
-    bp4 = convert(T, 5 // 54)
+    c1::T2 = 1 // 4
+    c2::T2 = 7 // 10
+    c3::T2 = 1
+    a21::T = 1 // 32
+    a31::T = 19 // 600
+    a32::T = 16 // 75
+    a41::T = 32 // 315
+    a42::T = 58 // 315
+    a43::T = 3 // 14
+    btilde1::T = 1 // 21 - 14 // 375
+    btilde2::T = 28 // 81 - 136 // 375
+    btilde3::T = 50 // 567 - 2 // 25
+    btilde4::T = 1 // 54 - 1 // 50
+    bptilde1::T = 1 // 14 - 17 // 231
+    bptilde2::T = 32 // 81 - 116 // 297
+    bptilde3::T = 250 // 567 - 925 // 2079
+    bptilde4::T = 5 // 54 - 1 // 11
+    b1::T = 1 // 21
+    b2::T = 28 // 81
+    b3::T = 50 // 567
+    b4::T = 1 // 54
+    bp1::T = 1 // 14
+    bp2::T = 32 // 81
+    bp3::T = 250 // 567
+    bp4::T = 5 // 54
     ERKN4ConstantCache(c1, c2, c3, a21, a31, a32, a41, a42, a43, b1, b2, b3, b4, bp1, bp2,
         bp3, bp4, btilde1, btilde2, btilde3, btilde4, bptilde1, bptilde2,
         bptilde3, bptilde4)
@@ -398,27 +398,27 @@ struct ERKN5ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function ERKN5ConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 2)
-    c2 = convert(T2, 19 // 70)
-    c3 = convert(T2, 44 // 51)
-    a21 = convert(T, 1 // 8)
-    a31 = convert(T, 2907 // 343000)
-    a32 = convert(T, 1216 // 42875)
-    a41 = convert(T, 6624772 // Int64(128538819))
-    a42 = convert(T, 6273905 // Int64(54121608))
-    a43 = convert(T, Int64(210498365) // Int64(1028310552))
-    b1 = convert(T, 479 // 5016)
-    b2 = convert(T, 235 // 1776)
-    b3 = convert(T, 145775 // 641744)
-    b4 = convert(T, 309519 // 6873416)
-    btilde1 = convert(T, 479 // 5016 - 184883 // 2021250)
-    btilde2 = convert(T, 235 // 1776 - 411163 // 3399375)
-    btilde3 = convert(T, 145775 // 641744 - 6 // 25)
-    btilde4 = convert(T, 309519 // 6873416 - 593028 // Int64(12464375))
+    c1::T2 = 1 // 2
+    c2::T2 = 19 // 70
+    c3::T2 = 44 // 51
+    a21::T = 1 // 8
+    a31::T = 2907 // 343000
+    a32::T = 1216 // 42875
+    a41::T = 6624772 // Int64(128538819)
+    a42::T = 6273905 // Int64(54121608)
+    a43::T = Int64(210498365) // Int64(1028310552)
+    b1::T = 479 // 5016
+    b2::T = 235 // 1776
+    b3::T = 145775 // 641744
+    b4::T = 309519 // 6873416
+    btilde1::T = 479 // 5016 - 184883 // 2021250
+    btilde2::T = 235 // 1776 - 411163 // 3399375
+    btilde3::T = 145775 // 641744 - 6 // 25
+    btilde4::T = 309519 // 6873416 - 593028 // Int64(12464375)
     bp1 = b1
-    bp2 = convert(T, 235 // 888)
-    bp3 = convert(T, 300125 // 962616)
-    bp4 = convert(T, 2255067 // 6873416)
+    bp2::T = 235 // 888
+    bp3::T = 300125 // 962616
+    bp4::T = 2255067 // 6873416
     # bptilde1 = convert(T,0)
     # bptilde2 = convert(T,0)
     # bptilde3 = convert(T,0)
@@ -503,54 +503,54 @@ struct ERKN7ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function ERKN7ConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 108816483 // 943181462)
-    c2 = convert(T2, 108816483 // 471590731)
-    c3 = convert(T2, 151401202 // 200292705)
-    c4 = convert(T2, 682035803 // 631524599)
-    c5 = convert(T2, 493263404 // 781610081)
-    c6 = convert(T2, 1)
-    a21 = convert(T, 5107771 // 767472028)
-    a31 = convert(T, 5107771 // 575604021)
-    a32 = convert(T, 16661485 // 938806552)
-    a41 = convert(T, 325996677 // 876867260)
-    a42 = convert(T, -397622579 // 499461366)
-    a43 = convert(T, 541212017 // 762248206)
-    a51 = convert(T, 82243160 // 364375691)
-    a52 = convert(T, -515873404 // 1213273815)
-    a53 = convert(T, 820109726 // 1294837243)
-    a54 = convert(T, 36245507 // 242779260)
-    a61 = convert(T, 3579594 // 351273191)
-    a62 = convert(T, 34292133 // 461028419)
-    a63 = convert(T, 267156948 // 2671391749)
-    a64 = convert(T, 22665163 // 1338599875)
-    a65 = convert(T, -3836509 // 1614789462)
-    a71 = convert(T, 53103334 // 780726093)
-    a73 = convert(T, 352190060 // 1283966121)
-    a74 = convert(T, 37088117 // 2206150964)
-    a75 = convert(T, 7183323 // 1828127386)
-    a76 = convert(T, 187705681 // 1370684829)
-    b1 = convert(T, 53103334 // 780726093)
-    b3 = convert(T, 352190060 // 1283966121)
-    b4 = convert(T, 37088117 // 2206150964)
-    b5 = convert(T, 7183323 // 1828127386)
-    b6 = convert(T, 187705681 // 1370684829)
-    bp1 = convert(T, 53103334 // 780726093)
-    bp3 = convert(T, 244481296 // 685635505)
-    bp4 = convert(T, 41493456 // 602487871)
-    bp5 = convert(T, -45498718 // 926142189)
-    bp6 = convert(T, 1625563237 // 4379140271)
-    bp7 = convert(T, 191595797 // 1038702495)
-    btilde1 = convert(T, 53103334 // 780726093 - 41808761 // 935030896)
-    btilde3 = convert(T, 352190060 // 1283966121 - 46261019 // 135447428)
-    btilde4 = convert(T, 37088117 // 2206150964 - 289298425 // 1527932372)
-    btilde5 = convert(T, 7183323 // 1828127386 + 52260067 // 3104571287)
-    btilde6 = convert(T, 187705681 // 1370684829 + 49872919 // 848719175)
-    bptilde1 = convert(T, 53103334 // 780726093 - 41808761 // 935030896)
-    bptilde3 = convert(T, 244481296 // 685635505 - 224724272 // 506147085)
-    bptilde4 = convert(T, 41493456 // 602487871 - 2995752066 // 3862177123)
-    bptilde5 = convert(T, -45498718 // 926142189 - 170795979 // 811534085)
-    bptilde6 = convert(T, 1625563237 // 4379140271 + 177906423 // 1116903503)
-    bptilde7 = convert(T, 191595797 // 1038702495 + 655510901 // 2077404990)
+    c1::T2 = 108816483 // 943181462
+    c2::T2 = 108816483 // 471590731
+    c3::T2 = 151401202 // 200292705
+    c4::T2 = 682035803 // 631524599
+    c5::T2 = 493263404 // 781610081
+    c6::T2 = 1
+    a21::T = 5107771 // 767472028
+    a31::T = 5107771 // 575604021
+    a32::T = 16661485 // 938806552
+    a41::T = 325996677 // 876867260
+    a42::T = -397622579 // 499461366
+    a43::T = 541212017 // 762248206
+    a51::T = 82243160 // 364375691
+    a52::T = -515873404 // 1213273815
+    a53::T = 820109726 // 1294837243
+    a54::T = 36245507 // 242779260
+    a61::T = 3579594 // 351273191
+    a62::T = 34292133 // 461028419
+    a63::T = 267156948 // 2671391749
+    a64::T = 22665163 // 1338599875
+    a65::T = -3836509 // 1614789462
+    a71::T = 53103334 // 780726093
+    a73::T = 352190060 // 1283966121
+    a74::T = 37088117 // 2206150964
+    a75::T = 7183323 // 1828127386
+    a76::T = 187705681 // 1370684829
+    b1::T = 53103334 // 780726093
+    b3::T = 352190060 // 1283966121
+    b4::T = 37088117 // 2206150964
+    b5::T = 7183323 // 1828127386
+    b6::T = 187705681 // 1370684829
+    bp1::T = 53103334 // 780726093
+    bp3::T = 244481296 // 685635505
+    bp4::T = 41493456 // 602487871
+    bp5::T = -45498718 // 926142189
+    bp6::T = 1625563237 // 4379140271
+    bp7::T = 191595797 // 1038702495
+    btilde1::T = 53103334 // 780726093 - 41808761 // 935030896
+    btilde3::T = 352190060 // 1283966121 - 46261019 // 135447428
+    btilde4::T = 37088117 // 2206150964 - 289298425 // 1527932372
+    btilde5::T = 7183323 // 1828127386 + 52260067 // 3104571287
+    btilde6::T = 187705681 // 1370684829 + 49872919 // 848719175
+    bptilde1::T = 53103334 // 780726093 - 41808761 // 935030896
+    bptilde3::T = 244481296 // 685635505 - 224724272 // 506147085
+    bptilde4::T = 41493456 // 602487871 - 2995752066 // 3862177123
+    bptilde5::T = -45498718 // 926142189 - 170795979 // 811534085
+    bptilde6::T = 1625563237 // 4379140271 + 177906423 // 1116903503
+    bptilde7::T = 191595797 // 1038702495 + 655510901 // 2077404990
     ERKN7ConstantCache(c1, c2, c3, c4, c5, c6, a21, a31, a32, a41, a42, a43, a51, a52, a53,
         a54, a61, a62, a63, a64, a65, a71, a73, a74, a75, a76, b1, b3, b4,
         b5,
@@ -637,61 +637,61 @@ struct DPRKN4ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function DPRKN4ConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 4)
-    c2 = convert(T2, 7 // 10)
-    c3 = convert(T2, 1)
-    a21 = convert(T, 1 // 32)
-    a31 = convert(T, 7 // 1000)
-    a32 = convert(T, 119 // 500)
-    a41 = convert(T, 1 // 14)
-    a42 = convert(T, 8 // 27)
-    a43 = convert(T, 25 // 189)
-    b1 = convert(T, 1 // 14)
-    b2 = convert(T, 8 // 27)
-    b3 = convert(T, 25 // 189)
-    # b4 = convert(T, 0)
-    bp1 = convert(T, 1 // 14)
-    bp2 = convert(T, 32 // 81)
-    bp3 = convert(T, 250 // 567)
-    bp4 = convert(T, 5 // 54)
-    btilde1 = convert(T, 1 // 14 + 7 // 150)
-    btilde2 = convert(T, 8 // 27 - 67 // 150)
-    btilde3 = convert(T, 25 // 189 - 3 // 20)
-    btilde4 = convert(T, 1 // 20)
-    bptilde1 = convert(T, 1 // 14 - 13 // 21)
-    bptilde2 = convert(T, 32 // 81 + 20 // 27)
-    bptilde3 = convert(T, 250 // 567 - 275 // 189)
-    bptilde4 = convert(T, 5 // 54 + 1 // 3)
+    c1::T2 = 1 // 4
+    c2::T2 = 7 // 10
+    c3::T2 = 1
+    a21::T = 1 // 32
+    a31::T = 7 // 1000
+    a32::T = 119 // 500
+    a41::T = 1 // 14
+    a42::T = 8 // 27
+    a43::T = 25 // 189
+    b1::T = 1 // 14
+    b2::T = 8 // 27
+    b3::T = 25 // 189
+    # b4::T = 0
+    bp1::T = 1 // 14
+    bp2::T = 32 // 81
+    bp3::T = 250 // 567
+    bp4::T = 5 // 54
+    btilde1::T = 1 // 14 + 7 // 150
+    btilde2::T = 8 // 27 - 67 // 150
+    btilde3::T = 25 // 189 - 3 // 20
+    btilde4::T = 1 // 20
+    bptilde1::T = 1 // 14 - 13 // 21
+    bptilde2::T = 32 // 81 + 20 // 27
+    bptilde3::T = 250 // 567 - 275 // 189
+    bptilde4::T = 5 // 54 + 1 // 3
     DPRKN4ConstantCache(c1, c2, c3, a21, a31, a32, a41, a42, a43, b1, b2, b3,
         bp1, bp2, bp3, bp4, btilde1, btilde2, btilde3, btilde4,
         bptilde1, bptilde2, bptilde3, bptilde4)
 end
 
 function DPRKN4ConstantCache(T::Type{<:CompiledFloats}, T2::Type{<:CompiledFloats})
-    c1 = convert(T2, 0.25)
-    c2 = convert(T2, 0.7)
-    c3 = convert(T2, 1.0)
-    a21 = convert(T, 0.03125)
-    a31 = convert(T, 0.007)
-    a32 = convert(T, 0.238)
-    a41 = convert(T, 0.07142857142857142)
-    a42 = convert(T, 0.2962962962962963)
-    a43 = convert(T, 0.13227513227513227)
-    b1 = convert(T, 0.07142857142857142)
-    b2 = convert(T, 0.2962962962962963)
-    b3 = convert(T, 0.13227513227513227)
-    bp1 = convert(T, 0.07142857142857142)
-    bp2 = convert(T, 0.3950617283950617)
-    bp3 = convert(T, 0.4409171075837742)
-    bp4 = convert(T, 0.09259259259259259)
-    btilde1 = convert(T, 0.11809523809523809)
-    btilde2 = convert(T, -0.15037037037037038)
-    btilde3 = convert(T, -0.017724867724867727)
-    btilde4 = convert(T, 0.05)
-    bptilde1 = convert(T, -0.5476190476190477)
-    bptilde2 = convert(T, 1.1358024691358024)
-    bptilde3 = convert(T, -1.0141093474426808)
-    bptilde4 = convert(T, 0.42592592592592593)
+    c1::T2 = 0.25
+    c2::T2 = 0.7
+    c3::T2 = 1.0
+    a21::T = 0.03125
+    a31::T = 0.007
+    a32::T = 0.238
+    a41::T = 0.07142857142857142
+    a42::T = 0.2962962962962963
+    a43::T = 0.13227513227513227
+    b1::T = 0.07142857142857142
+    b2::T = 0.2962962962962963
+    b3::T = 0.13227513227513227
+    bp1::T = 0.07142857142857142
+    bp2::T = 0.3950617283950617
+    bp3::T = 0.4409171075837742
+    bp4::T = 0.09259259259259259
+    btilde1::T = 0.11809523809523809
+    btilde2::T = -0.15037037037037038
+    btilde3::T = -0.017724867724867727
+    btilde4::T = 0.05
+    bptilde1::T = -0.5476190476190477
+    bptilde2::T = 1.1358024691358024
+    bptilde3::T = -1.0141093474426808
+    bptilde4::T = 0.42592592592592593
     DPRKN4ConstantCache(c1, c2, c3, a21, a31, a32, a41, a42, a43, b1, b2, b3,
         bp1, bp2, bp3, bp4, btilde1, btilde2, btilde3, btilde4,
         bptilde1, bptilde2, bptilde3, bptilde4)
@@ -744,50 +744,50 @@ struct DPRKN5ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function DPRKN5ConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 8)
-    c2 = convert(T2, 1 // 4)
-    c3 = convert(T2, 1 // 2)
-    c4 = convert(T2, 3 // 4)
-    c5 = convert(T2, 1)
-    a21 = convert(T, 1 // 128)
-    a31 = convert(T, 1 // 96)
-    a32 = convert(T, 1 // 48)
-    a41 = convert(T, 1 // 24)
-    # a42 = convert(T, 0)
-    a43 = convert(T, 1 // 12)
-    a51 = convert(T, 9 // 128)
-    # a52 = convert(T, 0)
-    a53 = convert(T, 9 // 64)
-    a54 = convert(T, 9 // 128)
-    a61 = convert(T, 7 // 90)
-    # a62 = convert(T, 0)
-    a63 = convert(T, 4 // 15)
-    a64 = convert(T, 1 // 15)
-    a65 = convert(T, 4 // 45)
-    b1 = convert(T, 7 // 90)
+    c1::T2 = 1 // 8
+    c2::T2 = 1 // 4
+    c3::T2 = 1 // 2
+    c4::T2 = 3 // 4
+    c5::T2 = 1
+    a21::T = 1 // 128
+    a31::T = 1 // 96
+    a32::T = 1 // 48
+    a41::T = 1 // 24
+    # a42::T = 0
+    a43::T = 1 // 12
+    a51::T = 9 // 128
+    # a52::T = 0
+    a53::T = 9 // 64
+    a54::T = 9 // 128
+    a61::T = 7 // 90
+    # a62::T = 0
+    a63::T = 4 // 15
+    a64::T = 1 // 15
+    a65::T = 4 // 45
+    b1::T = 7 // 90
     # b2 = convert(T,0)
-    b3 = convert(T, 4 // 15)
-    b4 = convert(T, 1 // 15)
-    b5 = convert(T, 4 // 45)
-    # b6 = convert(T, 0)
-    bp1 = convert(T, 7 // 90)
+    b3::T = 4 // 15
+    b4::T = 1 // 15
+    b5::T = 4 // 45
+    # b6::T = 0
+    bp1::T = 7 // 90
     # bp2 = convert(T,0)
-    bp3 = convert(T, 16 // 45)
-    bp4 = convert(T, 2 // 15)
-    bp5 = convert(T, 16 // 45)
-    bp6 = convert(T, 7 // 90)
-    btilde1 = convert(T, 7 // 90 - 1 // 6)
+    bp3::T = 16 // 45
+    bp4::T = 2 // 15
+    bp5::T = 16 // 45
+    bp6::T = 7 // 90
+    btilde1::T = 7 // 90 - 1 // 6
     # btilde2 = convert(T,0)
-    btilde3 = convert(T, 4 // 15)
-    btilde4 = convert(T, 1 // 15 - 1 // 3)
-    btilde5 = convert(T, 4 // 45)
-    #btilde6 = convert(T, 0)
-    bptilde1 = convert(T, 7 // 90)
+    btilde3::T = 4 // 15
+    btilde4::T = 1 // 15 - 1 // 3
+    btilde5::T = 4 // 45
+    #btilde6::T = 0
+    bptilde1::T = 7 // 90
     # bptilde2 = convert(T,0)
-    bptilde3 = convert(T, 16 // 45 - 2 // 3)
-    bptilde4 = convert(T, 2 // 15 + 1 // 3)
-    bptilde5 = convert(T, 16 // 45 - 2 // 3)
-    bptilde6 = convert(T, 7 // 90)
+    bptilde3::T = 16 // 45 - 2 // 3
+    bptilde4::T = 2 // 15 + 1 // 3
+    bptilde5::T = 16 // 45 - 2 // 3
+    bptilde6::T = 7 // 90
     DPRKN5ConstantCache(c1, c2, c3, c4, c5, a21, a31, a32, a41, a43, a51,
         a53, a54, a61, a63, a64, a65, b1, b3, b4, b5, bp1,
         bp3, bp4, bp5, bp6, btilde1, btilde3, btilde4, btilde5,
@@ -795,41 +795,41 @@ function DPRKN5ConstantCache(T::Type, T2::Type)
 end
 
 function DPRKN5ConstantCache(T::Type{<:CompiledFloats}, T2::Type{<:CompiledFloats})
-    c1 = convert(T2, 0.125)
-    c2 = convert(T2, 0.25)
-    c3 = convert(T2, 0.5)
-    c4 = convert(T2, 0.75)
-    c5 = convert(T2, 1.0)
-    a21 = convert(T, 1 // 128)
-    a31 = convert(T, 1 // 96)
-    a32 = convert(T, 1 // 48)
-    a41 = convert(T, 1 // 24)
-    a43 = convert(T, 1 // 12)
-    a51 = convert(T, 7 // 90)
-    a53 = convert(T, 4 // 15)
-    a54 = convert(T, 1 // 15)
-    a61 = convert(T, 0.07777777777777778)
-    a63 = convert(T, 0.26666666666666666)
-    a64 = convert(T, 0.06666666666666667)
-    a65 = convert(T, 0.08888888888888889)
-    b1 = convert(T, 0.07777777777777778)
-    b3 = convert(T, 0.26666666666666666)
-    b4 = convert(T, 0.06666666666666667)
-    b5 = convert(T, 0.08888888888888889)
-    bp1 = convert(T, 0.07777777777777778)
-    bp3 = convert(T, 0.35555555555555557)
-    bp4 = convert(T, 0.13333333333333333)
-    bp5 = convert(T, 0.35555555555555557)
-    bp6 = convert(T, 0.07777777777777778)
-    btilde1 = convert(T, -0.08888888888888888)
-    btilde3 = convert(T, 0.26666666666666666)
-    btilde4 = convert(T, -0.26666666666666666)
-    btilde5 = convert(T, 0.08888888888888889)
-    bptilde1 = convert(T, 0.07777777777777778)
-    bptilde3 = convert(T, -0.31111111111111106)
-    bptilde4 = convert(T, 0.4666666666666667)
-    bptilde5 = convert(T, -0.31111111111111106)
-    bptilde6 = convert(T, 0.07777777777777778)
+    c1::T2 = 0.125
+    c2::T2 = 0.25
+    c3::T2 = 0.5
+    c4::T2 = 0.75
+    c5::T2 = 1.0
+    a21::T = 1 // 128
+    a31::T = 1 // 96
+    a32::T = 1 // 48
+    a41::T = 1 // 24
+    a43::T = 1 // 12
+    a51::T = 7 // 90
+    a53::T = 4 // 15
+    a54::T = 1 // 15
+    a61::T = 0.07777777777777778
+    a63::T = 0.26666666666666666
+    a64::T = 0.06666666666666667
+    a65::T = 0.08888888888888889
+    b1::T = 0.07777777777777778
+    b3::T = 0.26666666666666666
+    b4::T = 0.06666666666666667
+    b5::T = 0.08888888888888889
+    bp1::T = 0.07777777777777778
+    bp3::T = 0.35555555555555557
+    bp4::T = 0.13333333333333333
+    bp5::T = 0.35555555555555557
+    bp6::T = 0.07777777777777778
+    btilde1::T = -0.08888888888888888
+    btilde3::T = 0.26666666666666666
+    btilde4::T = -0.26666666666666666
+    btilde5::T = 0.08888888888888889
+    bptilde1::T = 0.07777777777777778
+    bptilde3::T = -0.31111111111111106
+    bptilde4::T = 0.4666666666666667
+    bptilde5::T = -0.31111111111111106
+    bptilde6::T = 0.07777777777777778
     DPRKN5ConstantCache(c1, c2, c3, c4, c5, a21, a31, a32, a41, a43, a51,
         a53, a54, a61, a63, a64, a65, b1, b3, b4, b5, bp1,
         bp3, bp4, bp5, bp6, btilde1, btilde3, btilde4, btilde5,
@@ -926,86 +926,86 @@ struct DPRKN6ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function DPRKN6ConstantCache(T::Type{<:CompiledFloats}, T2::Type{<:CompiledFloats})
-    c1 = convert(T2, 0.12929590313670442)
-    c2 = convert(T2, 0.25859180627340883)
-    c3 = convert(T2, 0.67029708261548)
-    c4 = convert(T2, 0.9)
-    c5 = convert(T2, 1.0)
-    a21 = convert(T, 0.008358715283968025)
-    a31 = convert(T, 0.011144953711957367)
-    a32 = convert(T, 0.022289907423914734)
-    a41 = convert(T, 0.1454747428010918)
-    a42 = convert(T, -0.22986064052264749)
-    a43 = convert(T, 0.3090349872029675)
-    a51 = convert(T, -0.20766826295078997)
-    a52 = convert(T, 0.6863667842925143)
-    a53 = convert(T, -0.19954927787234925)
-    a54 = convert(T, 0.12585075653062489)
-    a61 = convert(T, 0.07811016144349478)
-    a63 = convert(T, 0.2882917411897668)
-    a64 = convert(T, 0.12242553717457041)
-    a65 = convert(T, 0.011172560192168035)
-    b1 = convert(T, 0.07811016144349478)
-    b3 = convert(T, 0.2882917411897668)
-    b4 = convert(T, 0.12242553717457041)
-    b5 = convert(T, 0.011172560192168035)
-    bp1 = convert(T, 0.07811016144349478)
-    bp3 = convert(T, 0.3888434787059826)
-    bp4 = convert(T, 0.3713207579288423)
-    bp5 = convert(T, 0.11172560192168035)
-    bp6 = convert(T, 0.05)
-    btilde1 = convert(T, -0.9807490989269235)
-    btilde2 = convert(T, 2.406751371924452)
-    btilde3 = convert(T, -1.559600370364267)
-    btilde4 = convert(T, 0.12242553717457041)
-    btilde5 = convert(T, 0.011172560192168035)
-    bptilde1 = convert(T, 0.023504273504273504)
-    bptilde3 = convert(T, -0.07242330719764424)
-    bptilde4 = convert(T, 0.17543989844952962)
-    bptilde5 = convert(T, -0.2765208647561589)
-    bptilde6 = convert(T, 0.15)
-    r14 = convert(T, 0.21367521367521367)
-    r13 = convert(T, -0.9066951566951567)
-    r12 = convert(T, 1.5161443494776827)
-    r11 = convert(T, -1.245014245014245)
-    r10 = convert(T, 0.5)
-    r34 = convert(T, -0.6583937017967658)
-    r33 = convert(T, 2.5384011164109506)
-    r32 = convert(T, -3.577652872294921)
-    r31 = convert(T, 1.9859371988705032)
-    r44 = convert(T, 1.5949081677229964)
-    r43 = convert(T, -5.164133553908094)
-    r42 = convert(T, 5.547586751052329)
-    r41 = convert(T, -1.8559358276926614)
-    r54 = convert(T, -2.513826043237808)
-    r53 = convert(T, 7.273336685101391)
-    r52 = convert(T, -6.926987319144182)
-    r51 = convert(T, 2.178649237472767)
-    r64 = convert(T, 1.3636363636363635)
-    r63 = convert(T, -3.7409090909090907)
-    r62 = convert(T, 3.440909090909091)
-    r61 = convert(T, -1.0636363636363637)
-    rp14 = convert(T, 1.2820512820512822)
-    rp13 = convert(T, -4.533475783475783)
-    rp12 = convert(T, 6.064577397910731)
-    rp11 = convert(T, -3.735042735042735)
-    rp10 = convert(T, 1)
-    rp34 = convert(T, -3.950362210780595)
-    rp33 = convert(T, 12.692005582054751)
-    rp32 = convert(T, -14.310611489179683)
-    rp31 = convert(T, 5.95781159661151)
-    rp44 = convert(T, 9.56944900633798)
-    rp43 = convert(T, -25.820667769540467)
-    rp42 = convert(T, 22.190347004209315)
-    rp41 = convert(T, -5.567807483077984)
-    rp54 = convert(T, -15.082956259426847)
-    rp53 = convert(T, 36.366683425506956)
-    rp52 = convert(T, -27.707949276576727)
-    rp51 = convert(T, 6.5359477124183005)
-    rp64 = convert(T, 8.181818181818182)
-    rp63 = convert(T, -18.704545454545453)
-    rp62 = convert(T, 13.763636363636364)
-    rp61 = convert(T, -3.190909090909091)
+    c1::T2 = 0.12929590313670442
+    c2::T2 = 0.25859180627340883
+    c3::T2 = 0.67029708261548
+    c4::T2 = 0.9
+    c5::T2 = 1.0
+    a21::T = 0.008358715283968025
+    a31::T = 0.011144953711957367
+    a32::T = 0.022289907423914734
+    a41::T = 0.1454747428010918
+    a42::T = -0.22986064052264749
+    a43::T = 0.3090349872029675
+    a51::T = -0.20766826295078997
+    a52::T = 0.6863667842925143
+    a53::T = -0.19954927787234925
+    a54::T = 0.12585075653062489
+    a61::T = 0.07811016144349478
+    a63::T = 0.2882917411897668
+    a64::T = 0.12242553717457041
+    a65::T = 0.011172560192168035
+    b1::T = 0.07811016144349478
+    b3::T = 0.2882917411897668
+    b4::T = 0.12242553717457041
+    b5::T = 0.011172560192168035
+    bp1::T = 0.07811016144349478
+    bp3::T = 0.3888434787059826
+    bp4::T = 0.3713207579288423
+    bp5::T = 0.11172560192168035
+    bp6::T = 0.05
+    btilde1::T = -0.9807490989269235
+    btilde2::T = 2.406751371924452
+    btilde3::T = -1.559600370364267
+    btilde4::T = 0.12242553717457041
+    btilde5::T = 0.011172560192168035
+    bptilde1::T = 0.023504273504273504
+    bptilde3::T = -0.07242330719764424
+    bptilde4::T = 0.17543989844952962
+    bptilde5::T = -0.2765208647561589
+    bptilde6::T = 0.15
+    r14::T = 0.21367521367521367
+    r13::T = -0.9066951566951567
+    r12::T = 1.5161443494776827
+    r11::T = -1.245014245014245
+    r10::T = 0.5
+    r34::T = -0.6583937017967658
+    r33::T = 2.5384011164109506
+    r32::T = -3.577652872294921
+    r31::T = 1.9859371988705032
+    r44::T = 1.5949081677229964
+    r43::T = -5.164133553908094
+    r42::T = 5.547586751052329
+    r41::T = -1.8559358276926614
+    r54::T = -2.513826043237808
+    r53::T = 7.273336685101391
+    r52::T = -6.926987319144182
+    r51::T = 2.178649237472767
+    r64::T = 1.3636363636363635
+    r63::T = -3.7409090909090907
+    r62::T = 3.440909090909091
+    r61::T = -1.0636363636363637
+    rp14::T = 1.2820512820512822
+    rp13::T = -4.533475783475783
+    rp12::T = 6.064577397910731
+    rp11::T = -3.735042735042735
+    rp10::T = 1
+    rp34::T = -3.950362210780595
+    rp33::T = 12.692005582054751
+    rp32::T = -14.310611489179683
+    rp31::T = 5.95781159661151
+    rp44::T = 9.56944900633798
+    rp43::T = -25.820667769540467
+    rp42::T = 22.190347004209315
+    rp41::T = -5.567807483077984
+    rp54::T = -15.082956259426847
+    rp53::T = 36.366683425506956
+    rp52::T = -27.707949276576727
+    rp51::T = 6.5359477124183005
+    rp64::T = 8.181818181818182
+    rp63::T = -18.704545454545453
+    rp62::T = 13.763636363636364
+    rp61::T = -3.190909090909091
     DPRKN6ConstantCache(c1, c2, c3, c4, c5, a21, a31, a32, a41, a42, a43, a51,
         a52, a53, a54, a61, a63, a64, a65, b1, b3, b4, b5, bp1,
         bp3, bp4, bp5, bp6, btilde1, btilde2, btilde3, btilde4,
@@ -1020,45 +1020,45 @@ end
 
 function DPRKN6ConstantCache(T::Type, T2::Type)
     R = sqrt(big(8581))
-    c1 = convert(T2, (209 - R) / 900)
-    c2 = convert(T2, (209 - R) / 450)
-    c3 = convert(T2, (209 + R) / 450)
-    c4 = convert(T2, 9 // 10)
-    c5 = convert(T2, 1)
-    a21 = convert(T, (26131 - 209R) / 81_0000)
-    a31 = convert(T, (26131 - 209R) / 60_7500)
-    a32 = convert(T, (26131 - 209R) / 30_3750)
-    a41 = convert(T, (980403512254 + 7781688431R) / 116944_6992_1875)
-    a42 = convert(T, -(126288_4486208 + 153854_81287R) / 116944_6992_1875)
-    a43 = convert(T, (7166_233_891_441 + 786_945_632_99R) / 46_777_879_687_500)
-    a51 = convert(T, -9(329260 + 3181R) / 2704_0000)
-    a52 = convert(T, 27(35129 + 3331R) / 1352_0000)
-    a53 = convert(T, -27(554358343 + 31040327R) / 46406048_0000)
-    a54 = convert(T, 153(8555_257 - 67973R) / 274592_0000)
-    a61 = convert(T, 329 // 4212)
+    c1::T2 = (209 - R) / 900
+    c2::T2 = (209 - R) / 450
+    c3::T2 = (209 + R) / 450
+    c4::T2 = 9 // 10
+    c5::T2 = 1
+    a21::T = (26131 - 209R) / 81_0000
+    a31::T = (26131 - 209R) / 60_7500
+    a32::T = (26131 - 209R) / 30_3750
+    a41::T = (980403512254 + 7781688431R) / 116944_6992_1875
+    a42::T = -(126288_4486208 + 153854_81287R) / 116944_6992_1875
+    a43::T = (7166_233_891_441 + 786_945_632_99R) / 46_777_879_687_500
+    a51::T = -9(329260 + 3181R) / 2704_0000
+    a52::T = 27(35129 + 3331R) / 1352_0000
+    a53::T = -27(554358343 + 31040327R) / 46406048_0000
+    a54::T = 153(8555_257 - 67973R) / 274592_0000
+    a61::T = 329 // 4212
     # a62      = convert(T,0)
-    a63 = convert(T, (8411_9543 + 366_727R) / 4096_22616)
-    a64 = convert(T, (8411_9543 - 366_727R) / 4096_22616)
-    a65 = convert(T, 200 // 17901)
-    b1 = convert(T, 329 // 4212)
+    a63::T = (8411_9543 + 366_727R) / 4096_22616
+    a64::T = (8411_9543 - 366_727R) / 4096_22616
+    a65::T = 200 // 17901
+    b1::T = 329 // 4212
     # b2       = convert(T,0)
     b3 = a63
     b4 = a64
-    b5 = convert(T, 200 // 17901)
+    b5::T = 200 // 17901
     # b6       = convert(T,0)
     bp1 = b1
     # bp2      = b2
-    bp3 = convert(T, (389225579 + 96856R) / 10_2405_6540)
-    bp4 = convert(T, (389225579 - 96856R) / 10_2405_6540)
-    bp5 = convert(T, 2000 // 17901)
-    bp6 = convert(T, 1 // 20)
-    btilde1 = convert(T, 329 // 4212 - (2701 + 23R) / 4563)
-    btilde2 = convert(T, (9829 + 131R) / 9126)
-    btilde3 = convert(T, (8411_9543 + 366_727R) / 4096_22616 - 5(1798 + 17R) / 9126)
+    bp3::T = (389225579 + 96856R) / 10_2405_6540
+    bp4::T = (389225579 - 96856R) / 10_2405_6540
+    bp5::T = 2000 // 17901
+    bp6::T = 1 // 20
+    btilde1::T = 329 // 4212 - (2701 + 23R) / 4563
+    btilde2::T = (9829 + 131R) / 9126
+    btilde3::T = (8411_9543 + 366_727R) / 4096_22616 - 5(1798 + 17R) / 9126
     btilde4 = b4
     btilde5 = b5
     # btilde6  = convert(T,0)
-    bptilde1 = convert(T, 329 // 4212 - 115 // 2106)
+    bptilde1::T = 329 // 4212 - 115 // 2106
     # btildep2 = convert(T,0)
     bptilde3 = convert(T,
         (389225579 + 96856R) / 10_2405_6540 -
@@ -1066,50 +1066,50 @@ function DPRKN6ConstantCache(T::Type, T2::Type)
     bptilde4 = convert(T,
         (389225579 - 96856R) / 10_2405_6540 -
         (8411_9543 - 366_727R) / 2560_14135)
-    bptilde5 = convert(T, 2000 // 17901 - 6950 // 17901)
-    bptilde6 = convert(T, 1 // 20 + 1 // 10)
-    r14 = convert(T, 900 // 4212)
-    r13 = convert(T, -3819 // 4212)
-    r12 = convert(T, 6386 // 4212)
-    r11 = convert(T, -5244 // 4212)
-    r10 = convert(T, 2106 // 4212)
-    r34 = convert(T, 1800 * (5860823 - 152228R) / 22529243880)
-    r33 = convert(T, -6 * (4929647204 - 156109769R) / 22529243880)
-    r32 = convert(T, (22190560391 - 1109665151R) / 22529243880)
-    r31 = convert(T, 18 * (81356461 + 25954829R) / 22529243880)
-    r44 = convert(T, 1800 * (5860823 + 152228R) / 22529243880)
-    r43 = convert(T, -6 * (4929647204 + 156109769R) / 22529243880)
-    r42 = convert(T, (22190560391 + 1109665151R) / 22529243880)
-    r41 = convert(T, 18 * (81356461 - 25954829R) / 22529243880)
-    r54 = convert(T, -200 * 225 // 17901)
-    r53 = convert(T, 200 * 651 // 17901)
-    r52 = convert(T, -200 * 620 // 17901)
-    r51 = convert(T, 200 * 195 // 17901)
-    r64 = convert(T, 15 // 11)
-    r63 = convert(T, -823 // 220)
-    r62 = convert(T, 757 // 220)
-    r61 = convert(T, -117 // 110)
-    rp14 = convert(T, 5400 // 4212)
-    rp13 = convert(T, -19095 // 4212)
-    rp12 = convert(T, 25544 // 4212)
-    rp11 = convert(T, -15732 // 4212)
-    rp10 = convert(T, 1)
-    rp34 = convert(T, 5400 * (5860823 - 152228R) / 11264621940)
-    rp33 = convert(T, -15 * (4929647204 - 156109769R) / 11264621940)
-    rp32 = convert(T, 2 * (22190560391 - 1109665151R) / 11264621940)
-    rp31 = convert(T, 27 * (81356461 + 25954829R) / 11264621940)
-    rp44 = convert(T, 5400 * (5860823 + 152228R) / 11264621940)
-    rp43 = convert(T, -15 * (4929647204 + 156109769R) / 11264621940)
-    rp42 = convert(T, 2 * (22190560391 + 1109665151R) / 11264621940)
-    rp41 = convert(T, 27 * (81356461 - 25954829R) / 11264621940)
-    rp54 = convert(T, -1000 * 270 // 17901)
-    rp53 = convert(T, 1000 * 651 // 17901)
-    rp52 = convert(T, -1000 * 496 // 17901)
-    rp51 = convert(T, 1000 * 117 // 17901)
-    rp64 = convert(T, 1800 // 220)
-    rp63 = convert(T, -4115 // 220)
-    rp62 = convert(T, 3028 // 220)
-    rp61 = convert(T, -702 // 220)
+    bptilde5::T = 2000 // 17901 - 6950 // 17901
+    bptilde6::T = 1 // 20 + 1 // 10
+    r14::T = 900 // 4212
+    r13::T = -3819 // 4212
+    r12::T = 6386 // 4212
+    r11::T = -5244 // 4212
+    r10::T = 2106 // 4212
+    r34::T = 1800 * (5860823 - 152228R) / 22529243880
+    r33::T = -6 * (4929647204 - 156109769R) / 22529243880
+    r32::T = (22190560391 - 1109665151R) / 22529243880
+    r31::T = 18 * (81356461 + 25954829R) / 22529243880
+    r44::T = 1800 * (5860823 + 152228R) / 22529243880
+    r43::T = -6 * (4929647204 + 156109769R) / 22529243880
+    r42::T = (22190560391 + 1109665151R) / 22529243880
+    r41::T = 18 * (81356461 - 25954829R) / 22529243880
+    r54::T = -200 * 225 // 17901
+    r53::T = 200 * 651 // 17901
+    r52::T = -200 * 620 // 17901
+    r51::T = 200 * 195 // 17901
+    r64::T = 15 // 11
+    r63::T = -823 // 220
+    r62::T = 757 // 220
+    r61::T = -117 // 110
+    rp14::T = 5400 // 4212
+    rp13::T = -19095 // 4212
+    rp12::T = 25544 // 4212
+    rp11::T = -15732 // 4212
+    rp10::T = 1
+    rp34::T = 5400 * (5860823 - 152228R) / 11264621940
+    rp33::T = -15 * (4929647204 - 156109769R) / 11264621940
+    rp32::T = 2 * (22190560391 - 1109665151R) / 11264621940
+    rp31::T = 27 * (81356461 + 25954829R) / 11264621940
+    rp44::T = 5400 * (5860823 + 152228R) / 11264621940
+    rp43::T = -15 * (4929647204 + 156109769R) / 11264621940
+    rp42::T = 2 * (22190560391 + 1109665151R) / 11264621940
+    rp41::T = 27 * (81356461 - 25954829R) / 11264621940
+    rp54::T = -1000 * 270 // 17901
+    rp53::T = 1000 * 651 // 17901
+    rp52::T = -1000 * 496 // 17901
+    rp51::T = 1000 * 117 // 17901
+    rp64::T = 1800 // 220
+    rp63::T = -4115 // 220
+    rp62::T = 3028 // 220
+    rp61::T = -702 // 220
     DPRKN6ConstantCache(c1, c2, c3, c4, c5, a21, a31, a32, a41, a42, a43, a51,
         a52, a53, a54, a61, a63, a64, a65, b1, b3, b4, b5, bp1,
         bp3, bp4, bp5, bp6, btilde1, btilde2, btilde3, btilde4,
@@ -1170,50 +1170,50 @@ struct DPRKN6FMConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function DPRKN6FMConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 10)
-    c2 = convert(T2, 3 // 10)
-    c3 = convert(T2, 7 // 10)
-    c4 = convert(T2, 17 // 25)
-    c5 = convert(T2, 1)
-    a21 = convert(T, 1 // 200)
-    a31 = convert(T, -1 // 2200)
-    a32 = convert(T, 1 // 22)
-    a41 = convert(T, 637 // 6600)
-    a42 = convert(T, -7 // 110)
-    a43 = convert(T, 7 // 33)
-    a51 = convert(T, 225437 // 1968750)
-    a52 = convert(T, -30073 // 281250)
-    a53 = convert(T, 65569 // 281250)
-    a54 = convert(T, -9367 // 984375)
-    a61 = convert(T, 151 // 2142)
-    a62 = convert(T, 5 // 116)
-    a63 = convert(T, 385 // 1368)
-    a64 = convert(T, 55 // 168)
-    a65 = convert(T, -6250 // 28101)
-    b1 = convert(T, 151 // 2142)
-    b2 = convert(T, 5 // 116)
-    b3 = convert(T, 385 // 1368)
-    b4 = convert(T, 55 // 168)
-    b5 = convert(T, -6250 // 28101)
-    # b6 = convert(T, 0)
-    bp1 = convert(T, 151 // 2142)
-    bp2 = convert(T, 25 // 522)
-    bp3 = convert(T, 275 // 684)
-    bp4 = convert(T, 275 // 252)
-    bp5 = convert(T, -78125 // 112404)
-    bp6 = convert(T, 1 // 12)
-    btilde1 = convert(T, 151 // 2142 - 1349 // 157500)
-    btilde2 = convert(T, 5 // 116 - 7873 // 50000)
-    btilde3 = convert(T, 385 // 1368 - 192199 // 900000)
-    btilde4 = convert(T, 55 // 168 - 521683 // 2100000)
-    btilde5 = convert(T, -6250 // 28101 + 16 // 125)
-    # btilde6 = convert(T, 0)
-    bptilde1 = convert(T, 151 // 2142 - 1349 // 157500)
-    bptilde2 = convert(T, 25 // 522 - 7873 // 45000)
-    bptilde3 = convert(T, 275 // 684 - 27457 // 90000)
-    bptilde4 = convert(T, 275 // 252 - 521683 // 630000)
-    bptilde5 = convert(T, -78125 // 112404 + 2 // 5)
-    # bptilde6 = convert(T, 0)
+    c1::T2 = 1 // 10
+    c2::T2 = 3 // 10
+    c3::T2 = 7 // 10
+    c4::T2 = 17 // 25
+    c5::T2 = 1
+    a21::T = 1 // 200
+    a31::T = -1 // 2200
+    a32::T = 1 // 22
+    a41::T = 637 // 6600
+    a42::T = -7 // 110
+    a43::T = 7 // 33
+    a51::T = 225437 // 1968750
+    a52::T = -30073 // 281250
+    a53::T = 65569 // 281250
+    a54::T = -9367 // 984375
+    a61::T = 151 // 2142
+    a62::T = 5 // 116
+    a63::T = 385 // 1368
+    a64::T = 55 // 168
+    a65::T = -6250 // 28101
+    b1::T = 151 // 2142
+    b2::T = 5 // 116
+    b3::T = 385 // 1368
+    b4::T = 55 // 168
+    b5::T = -6250 // 28101
+    # b6::T = 0
+    bp1::T = 151 // 2142
+    bp2::T = 25 // 522
+    bp3::T = 275 // 684
+    bp4::T = 275 // 252
+    bp5::T = -78125 // 112404
+    bp6::T = 1 // 12
+    btilde1::T = 151 // 2142 - 1349 // 157500
+    btilde2::T = 5 // 116 - 7873 // 50000
+    btilde3::T = 385 // 1368 - 192199 // 900000
+    btilde4::T = 55 // 168 - 521683 // 2100000
+    btilde5::T = -6250 // 28101 + 16 // 125
+    # btilde6::T = 0
+    bptilde1::T = 151 // 2142 - 1349 // 157500
+    bptilde2::T = 25 // 522 - 7873 // 45000
+    bptilde3::T = 275 // 684 - 27457 // 90000
+    bptilde4::T = 275 // 252 - 521683 // 630000
+    bptilde5::T = -78125 // 112404 + 2 // 5
+    # bptilde6::T = 0
     DPRKN6FMConstantCache(c1, c2, c3, c4, c5, a21, a31, a32, a41, a42, a43, a51, a52,
         a53, a54, a61, a62, a63, a64, a65, b1, b2, b3, b4, b5, bp1, bp2,
         bp3, bp4, bp5, bp6, btilde1, btilde2, btilde3, btilde4, btilde5,
@@ -1221,47 +1221,47 @@ function DPRKN6FMConstantCache(T::Type, T2::Type)
 end
 
 function DPRKN6FMConstantCache(T::Type{<:CompiledFloats}, T2::Type{<:CompiledFloats})
-    c1 = convert(T2, 0.1)
-    c2 = convert(T2, 0.3)
-    c3 = convert(T2, 0.7)
-    c4 = convert(T2, 0.68)
-    c5 = convert(T2, 1.0)
-    a21 = convert(T, 0.005)
-    a31 = convert(T, -0.00045454545454545455)
-    a32 = convert(T, 0.045454545454545456)
-    a41 = convert(T, 0.09651515151515151)
-    a42 = convert(T, -0.06363636363636363)
-    a43 = convert(T, 0.21212121212121213)
-    a51 = convert(T, 0.11450768253968253)
-    a52 = convert(T, -0.10692622222222223)
-    a53 = convert(T, 0.23313422222222221)
-    a54 = convert(T, -0.00951568253968254)
-    a61 = convert(T, 0.07049486461251167)
-    a62 = convert(T, 0.04310344827586207)
-    a63 = convert(T, 0.2814327485380117)
-    a64 = convert(T, 0.3273809523809524)
-    a65 = convert(T, -0.22241201380733783)
-    b1 = convert(T, 0.07049486461251167)
-    b2 = convert(T, 0.04310344827586207)
-    b3 = convert(T, 0.2814327485380117)
-    b4 = convert(T, 0.3273809523809524)
-    b5 = convert(T, -0.22241201380733783)
-    bp1 = convert(T, 0.07049486461251167)
-    bp2 = convert(T, 0.04789272030651341)
-    bp3 = convert(T, 0.402046783625731)
-    bp4 = convert(T, 1.0912698412698412)
-    bp5 = convert(T, -0.6950375431479306)
-    bp6 = convert(T, 0.08333333333333333)
-    btilde1 = convert(T, 0.061929785247432305)
-    btilde2 = convert(T, -0.11435655172413792)
-    btilde3 = convert(T, 0.06787830409356727)
-    btilde4 = convert(T, 0.07896047619047619)
-    btilde5 = convert(T, -0.09441201380733782)
-    bptilde1 = convert(T, 0.061929785247432305)
-    bptilde2 = convert(T, -0.12706283524904216)
-    bptilde3 = convert(T, 0.0969690058479532)
-    bptilde4 = convert(T, 0.26320158730158716)
-    bptilde5 = convert(T, -0.2950375431479306)
+    c1::T2 = 0.1
+    c2::T2 = 0.3
+    c3::T2 = 0.7
+    c4::T2 = 0.68
+    c5::T2 = 1.0
+    a21::T = 0.005
+    a31::T = -0.00045454545454545455
+    a32::T = 0.045454545454545456
+    a41::T = 0.09651515151515151
+    a42::T = -0.06363636363636363
+    a43::T = 0.21212121212121213
+    a51::T = 0.11450768253968253
+    a52::T = -0.10692622222222223
+    a53::T = 0.23313422222222221
+    a54::T = -0.00951568253968254
+    a61::T = 0.07049486461251167
+    a62::T = 0.04310344827586207
+    a63::T = 0.2814327485380117
+    a64::T = 0.3273809523809524
+    a65::T = -0.22241201380733783
+    b1::T = 0.07049486461251167
+    b2::T = 0.04310344827586207
+    b3::T = 0.2814327485380117
+    b4::T = 0.3273809523809524
+    b5::T = -0.22241201380733783
+    bp1::T = 0.07049486461251167
+    bp2::T = 0.04789272030651341
+    bp3::T = 0.402046783625731
+    bp4::T = 1.0912698412698412
+    bp5::T = -0.6950375431479306
+    bp6::T = 0.08333333333333333
+    btilde1::T = 0.061929785247432305
+    btilde2::T = -0.11435655172413792
+    btilde3::T = 0.06787830409356727
+    btilde4::T = 0.07896047619047619
+    btilde5::T = -0.09441201380733782
+    bptilde1::T = 0.061929785247432305
+    bptilde2::T = -0.12706283524904216
+    bptilde3::T = 0.0969690058479532
+    bptilde4::T = 0.26320158730158716
+    bptilde5::T = -0.2950375431479306
     DPRKN6FMConstantCache(c1, c2, c3, c4, c5, a21, a31, a32, a41, a42, a43, a51, a52,
         a53, a54, a61, a62, a63, a64, a65, b1, b2, b3, b4, b5, bp1, bp2,
         bp3, bp4, bp5, bp6, btilde1, btilde2, btilde3, btilde4, btilde5,
@@ -1352,86 +1352,86 @@ struct DPRKN8ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function DPRKN8ConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 20)
-    c2 = convert(T2, 1 // 10)
-    c3 = convert(T2, 3 // 10)
-    c4 = convert(T2, 1 // 2)
-    c5 = convert(T2, 7 // 10)
-    c6 = convert(T2, 9 // 10)
-    c7 = convert(T2, 1)
-    c8 = convert(T2, 1)
-    a21 = convert(T, 1 // 800)
-    a31 = convert(T, 1 // 600)
-    a32 = convert(T, 1 // 300)
-    a41 = convert(T, 9 // 200)
-    a42 = convert(T, -9 // 100)
-    a43 = convert(T, 9 // 100)
-    a51 = convert(T, -66701 // 197352)
-    a52 = convert(T, 28325 // 32892)
-    a53 = convert(T, -2665 // 5482)
-    a54 = convert(T, 2170 // 24669)
-    a61 = convert(T, 2270_15747 // 30425_1000)
-    a62 = convert(T, -5489_7451 // 30425_100)
-    a63 = convert(T, 12942_349 // 10141_700)
-    a64 = convert(T, -9499 // 304_251)
-    a65 = convert(T, 539 // 9250)
-    a71 = convert(T, -11318_91597 // 9017_89000)
-    a72 = convert(T, 4196_4921 // 1288_2700)
-    a73 = convert(T, -6663_147 // 3220_675)
-    a74 = convert(T, 270_954 // 644_135)
-    a75 = convert(T, -108 // 5875)
-    a76 = convert(T, 114 // 1645)
-    a81 = convert(T, 138_369_59 // 3667458)
-    a82 = convert(T, -177_314_50 // 1833729)
-    a83 = convert(T, 106_3919_505 // 15647_8208)
-    a84 = convert(T, -332_138_45 // 3911_9552)
-    a85 = convert(T, 133_35 // 285_44)
-    a86 = convert(T, -705 // 14272)
-    a87 = convert(T, 1645 // 57088)
-    a91 = convert(T, 223 // 7938)
+    c1::T2 = 1 // 20
+    c2::T2 = 1 // 10
+    c3::T2 = 3 // 10
+    c4::T2 = 1 // 2
+    c5::T2 = 7 // 10
+    c6::T2 = 9 // 10
+    c7::T2 = 1
+    c8::T2 = 1
+    a21::T = 1 // 800
+    a31::T = 1 // 600
+    a32::T = 1 // 300
+    a41::T = 9 // 200
+    a42::T = -9 // 100
+    a43::T = 9 // 100
+    a51::T = -66701 // 197352
+    a52::T = 28325 // 32892
+    a53::T = -2665 // 5482
+    a54::T = 2170 // 24669
+    a61::T = 2270_15747 // 30425_1000
+    a62::T = -5489_7451 // 30425_100
+    a63::T = 12942_349 // 10141_700
+    a64::T = -9499 // 304_251
+    a65::T = 539 // 9250
+    a71::T = -11318_91597 // 9017_89000
+    a72::T = 4196_4921 // 1288_2700
+    a73::T = -6663_147 // 3220_675
+    a74::T = 270_954 // 644_135
+    a75::T = -108 // 5875
+    a76::T = 114 // 1645
+    a81::T = 138_369_59 // 3667458
+    a82::T = -177_314_50 // 1833729
+    a83::T = 106_3919_505 // 15647_8208
+    a84::T = -332_138_45 // 3911_9552
+    a85::T = 133_35 // 285_44
+    a86::T = -705 // 14272
+    a87::T = 1645 // 57088
+    a91::T = 223 // 7938
     # a92 = convert(T,0)
-    a93 = convert(T, 1175 // 8064)
-    a94 = convert(T, 925 // 6048)
-    a95 = convert(T, 41 // 448)
-    a96 = convert(T, 925 // 14112)
-    a97 = convert(T, 1175 // 72576)
+    a93::T = 1175 // 8064
+    a94::T = 925 // 6048
+    a95::T = 41 // 448
+    a96::T = 925 // 14112
+    a97::T = 1175 // 72576
     # a98 = convert(T,0)
-    b1 = convert(T, 223 // 7938)
+    b1::T = 223 // 7938
     # b2 = convert(T,0)
-    b3 = convert(T, 1175 // 8064)
-    b4 = convert(T, 925 // 6048)
-    b5 = convert(T, 41 // 448)
-    b6 = convert(T, 925 // 14112)
-    b7 = convert(T, 1175 // 72576)
+    b3::T = 1175 // 8064
+    b4::T = 925 // 6048
+    b5::T = 41 // 448
+    b6::T = 925 // 14112
+    b7::T = 1175 // 72576
     # b8 = convert(T,0)
     # b9 = convert(T,0)
-    bp1 = convert(T, 223 // 7938)
+    bp1::T = 223 // 7938
     # bp2 = convert(T,0)
-    bp3 = convert(T, 5875 // 36288)
-    bp4 = convert(T, 4625 // 21168)
-    bp5 = convert(T, 41 // 224)
-    bp6 = convert(T, 4625 // 21168)
-    bp7 = convert(T, 5875 // 36288)
-    bp8 = convert(T, 223 // 7938)
+    bp3::T = 5875 // 36288
+    bp4::T = 4625 // 21168
+    bp5::T = 41 // 224
+    bp6::T = 4625 // 21168
+    bp7::T = 5875 // 36288
+    bp8::T = 223 // 7938
     # bp9 = convert(T,0)
-    btilde1 = convert(T, 223 // 7938 - 7987_313 // 10994_1300)
+    btilde1::T = 223 // 7938 - 7987_313 // 10994_1300
     # btilde2 = convert(T,0)
-    btilde3 = convert(T, 1175 // 8064 - 1610_737 // 4467_4560)
-    btilde4 = convert(T, 925 // 6048 - 10023_263 // 3350_5920)
-    btilde5 = convert(T, 41 // 448 + 497_221 // 1240_9600)
-    btilde6 = convert(T, 925 // 14112 - 1002_3263 // 7818_0480)
-    btilde7 = convert(T, 1175 // 72576 - 1610_737 // 40207_1040)
+    btilde3::T = 1175 // 8064 - 1610_737 // 4467_4560
+    btilde4::T = 925 // 6048 - 10023_263 // 3350_5920
+    btilde5::T = 41 // 448 + 497_221 // 1240_9600
+    btilde6::T = 925 // 14112 - 1002_3263 // 7818_0480
+    btilde7::T = 1175 // 72576 - 1610_737 // 40207_1040
     # btilde8 = convert(T,0)
     # btilde9 = convert(T,0)
-    bptilde1 = convert(T, 223 // 7938 - 7987_313 // 10994_1300)
+    bptilde1::T = 223 // 7938 - 7987_313 // 10994_1300
     # bptilde2 = convert(T,0)
-    bptilde3 = convert(T, 5875 // 36288 - 1610_737 // 4020_7104)
-    bptilde4 = convert(T, 4625 // 21168 - 1002_3263 // 2345_4144)
-    bptilde5 = convert(T, 41 // 224 + 497_221 // 620_4800)
-    bptilde6 = convert(T, 4625 // 21168 - 1002_3263 // 2345_4144)
-    bptilde7 = convert(T, 5875 // 36288 - 1610_737 // 40207_104)
-    bptilde8 = convert(T, 223 // 7938 + 4251_941 // 5497_0650)
-    bptilde9 = convert(T, -3 // 20)
+    bptilde3::T = 5875 // 36288 - 1610_737 // 4020_7104
+    bptilde4::T = 4625 // 21168 - 1002_3263 // 2345_4144
+    bptilde5::T = 41 // 224 + 497_221 // 620_4800
+    bptilde6::T = 4625 // 21168 - 1002_3263 // 2345_4144
+    bptilde7::T = 5875 // 36288 - 1610_737 // 40207_104
+    bptilde8::T = 223 // 7938 + 4251_941 // 5497_0650
+    bptilde9::T = -3 // 20
     DPRKN8ConstantCache(c1, c2, c3, c4, c5, c6, c7, c8, a21, a31, a32, a41, a42, a43, a51,
         a52, a53, a54, a61, a62, a63, a64, a65, a71, a72, a73, a74, a75,
         a76, a81, a82, a83, a84, a85, a86, a87, a91, a93, a94, a95, a96,
@@ -1737,85 +1737,85 @@ struct DPRKN12ConstantCache{T, T2} <: OrdinaryDiffEqConstantCache
 end
 
 function DPRKN12ConstantCache(T::Type, T2::Type)
-    c1 = convert(T2, 1 // 50)
-    c2 = convert(T2, 1 // 25)
-    c3 = convert(T2, 1 // 10)
-    c4 = convert(T2, 2 // 15)
-    c5 = convert(T2, 4 // 25)
-    c6 = convert(T2, 1 // 20)
-    c7 = convert(T2, 1 // 5)
-    c8 = convert(T2, 1 // 4)
-    c9 = convert(T2, 1 // 3)
-    c10 = convert(T2, 1 // 2)
-    c11 = convert(T2, 5 // 9)
-    c12 = convert(T2, 3 // 4)
-    c13 = convert(T2, 6 // 7)
-    c14 = convert(T2, 8437 // 8926)
-    c15 = convert(T2, 1)
-    c16 = convert(T2, 1)
-    a21 = convert(T, 1 // 5000)
-    a31 = convert(T, 1 // 3750)
-    a32 = convert(T, 1 // 1875)
-    a41 = convert(T, 7 // 2400)
-    a42 = convert(T, -1 // 240)
-    a43 = convert(T, 1 // 160)
-    a51 = convert(T, 2 // 1215)
+    c1::T2 = 1 // 50
+    c2::T2 = 1 // 25
+    c3::T2 = 1 // 10
+    c4::T2 = 2 // 15
+    c5::T2 = 4 // 25
+    c6::T2 = 1 // 20
+    c7::T2 = 1 // 5
+    c8::T2 = 1 // 4
+    c9::T2 = 1 // 3
+    c10::T2 = 1 // 2
+    c11::T2 = 5 // 9
+    c12::T2 = 3 // 4
+    c13::T2 = 6 // 7
+    c14::T2 = 8437 // 8926
+    c15::T2 = 1
+    c16::T2 = 1
+    a21::T = 1 // 5000
+    a31::T = 1 // 3750
+    a32::T = 1 // 1875
+    a41::T = 7 // 2400
+    a42::T = -1 // 240
+    a43::T = 1 // 160
+    a51::T = 2 // 1215
     # a52 = convert(T,0)
-    a53 = convert(T, 4 // 729)
-    a54 = convert(T, 32 // 18225)
-    a61 = convert(T, 152 // 78125)
+    a53::T = 4 // 729
+    a54::T = 32 // 18225
+    a61::T = 152 // 78125
     # a62 = convert(T,0)
-    a63 = convert(T, 1408 // 196875)
-    a64 = convert(T, 2048 // 703125)
-    a65 = convert(T, 432 // 546875)
-    a71 = convert(T, 29 // 51200)
+    a63::T = 1408 // 196875
+    a64::T = 2048 // 703125
+    a65::T = 432 // 546875
+    a71::T = 29 // 51200
     # a72 = convert(T,0)
-    a73 = convert(T, 341 // 387072)
-    a74 = convert(T, -151 // 345600)
-    a75 = convert(T, 243 // 716800)
-    a76 = convert(T, -11 // 110592)
-    a81 = convert(T, 37 // 12000)
+    a73::T = 341 // 387072
+    a74::T = -151 // 345600
+    a75::T = 243 // 716800
+    a76::T = -11 // 110592
+    a81::T = 37 // 12000
     # a82 = convert(T,0)
     # a83 = convert(T,0)
-    a84 = convert(T, 2 // 1125)
-    a85 = convert(T, 27 // 10000)
-    a86 = convert(T, 5 // 3168)
-    a87 = convert(T, 224 // 20625)
-    a91 = convert(T, 100467472123373 // 27511470744477696)
+    a84::T = 2 // 1125
+    a85::T = 27 // 10000
+    a86::T = 5 // 3168
+    a87::T = 224 // 20625
+    a91::T = 100467472123373 // 27511470744477696
     # a92 = convert(T,0)
-    a93 = convert(T, 101066550784375 // 25488568483854336)
-    a94 = convert(T, 49478218404275 // 15475202293768704)
-    a95 = convert(T, 21990175014231 // 2674726322379776)
-    a96 = convert(T, -3576386017671875 // 2723635603703291904)
-    a97 = convert(T, 16163228153 // 1654104722787)
-    a98 = convert(T, 38747524076705 // 10316801529179136)
-    a101 = convert(T, 62178936641284701329 // 16772293867250014666848)
+    a93::T = 101066550784375 // 25488568483854336
+    a94::T = 49478218404275 // 15475202293768704
+    a95::T = 21990175014231 // 2674726322379776
+    a96::T = -3576386017671875 // 2723635603703291904
+    a97::T = 16163228153 // 1654104722787
+    a98::T = 38747524076705 // 10316801529179136
+    a101::T = 62178936641284701329 // 16772293867250014666848
     # a102 = convert(T,0)
-    a103 = convert(T, 46108564356250 // 9072835168325103)
-    a104 = convert(T, 1522561724950 // 1296119309760729)
-    a105 = convert(T, -45978886013453735443 // 2174186242050927827184)
-    a106 = convert(T, 299403512366617849203125 // 4981371278573254356053856)
-    a107 = convert(T, 15571226634087127616 // 774466927638876610083)
-    a108 = convert(T, -133736375367792139885 // 4717207650164066625051)
-    a109 = convert(T, 7461389216 // 501451974639)
-    a111 = convert(T, 501256914705531962342417557181 // 14270506505142656332600844507392)
+    a103::T = 46108564356250 // 9072835168325103
+    a104::T = 1522561724950 // 1296119309760729
+    a105::T = -45978886013453735443 // 2174186242050927827184
+    a106::T = 299403512366617849203125 // 4981371278573254356053856
+    a107::T = 15571226634087127616 // 774466927638876610083
+    a108::T = -133736375367792139885 // 4717207650164066625051
+    a109::T = 7461389216 // 501451974639
+    a111::T = 501256914705531962342417557181 // 14270506505142656332600844507392
     # a112 = convert(T,0)
-    a113 = convert(T, -1143766215625 // 132752960853408)
-    a114 = convert(T, -6864570325 // 1185294293334)
-    a115 = convert(T, 194348369382310456605879163404183 // 99893545535998594328205911551744)
+    a113::T = -1143766215625 // 132752960853408
+    a114::T = -6864570325 // 1185294293334
+    a115::T = 194348369382310456605879163404183 // 99893545535998594328205911551744
     a116 = convert(T,
         -94634958447010580589908066176109375 //
         27549212808177898050085930321520256)
-    a117 = convert(T, -17006472665356285286219618514 // 155584463413110817059022733377)
-    a118 = convert(T, 33530528814694461893884349656345 // 14270506505142656332600844507392)
-    a119 = convert(T, -13439782155791134368 // 17777268379678341919)
-    a1110 = convert(T, 1441341768767571 // 13159456712985856)
+    a117::T = -17006472665356285286219618514 // 155584463413110817059022733377
+    a118::T = 33530528814694461893884349656345 // 14270506505142656332600844507392
+    a119::T = -13439782155791134368 // 17777268379678341919
+    a1110::T = 1441341768767571 // 13159456712985856
     a121 = convert(T,
         parse(BigInt, "105854110734231079069010159870911189747853") //
         parse(BigInt, "5156624149476760916008179453333467046288864"))
     # a122 = convert(T,0)
-    a123 = convert(T, -144579793509250000 // 19842290513127000261)
-    a124 = convert(T, -101935644099967250 // 48188419817594143491)
+    a123::T = -144579793509250000 // 19842290513127000261
+    a124::T = -101935644099967250 // 48188419817594143491
     a125 = convert(T,
         parse(BigInt, "1585474394319811696785932424388196965") //
         parse(BigInt, "1709257457318830856936350991091849456"))
@@ -1828,15 +1828,15 @@ function DPRKN12ConstantCache(T::Type, T2::Type)
     a128 = convert(T,
         parse(BigInt, "1749840442221344572962864758990584360232600") //
         parse(BigInt, "1450300542040339007627300471250037606768743"))
-    a129 = convert(T, -11255775246405733991656178432768 // 27206626483067760480757659602193)
-    a1210 = convert(T, 669010348769579696 // 7368057640845834597)
-    a1211 = convert(T, 4598083098752 // 858563707934367)
+    a129::T = -11255775246405733991656178432768 // 27206626483067760480757659602193
+    a1210::T = 669010348769579696 // 7368057640845834597
+    a1211::T = 4598083098752 // 858563707934367
     a131 = convert(T,
         parse(BigInt, "-1639758773684715326849438048667467886824967397") //
         parse(BigInt, "11447568726280607813664651120965112496134881280"))
     # a132 = convert(T,0)
-    a133 = convert(T, 3942453384375 // 314673684985856)
-    a134 = convert(T, 11737114158175 // 1719466921529856)
+    a133::T = 3942453384375 // 314673684985856
+    a134::T = 11737114158175 // 1719466921529856
     a135 = convert(T,
         -23710715033675876683332701739887457 //
         4940189888325748664958546898558976)
@@ -1851,15 +1851,15 @@ function DPRKN12ConstantCache(T::Type, T2::Type)
         parse(BigInt, "18316109962048972501863441793544179993815810048"))
     a139 = convert(T,
         -493399374030747471036018890494175 // 251658285736841065236836942273664)
-    a1310 = convert(T, 418285003077108927126515545155 // 455369916679568501838710898688)
-    a1311 = convert(T, -15171723902781457 // 63532954684873728)
-    a1312 = convert(T, 1501203688494867 // 9434957026426880)
+    a1310::T = 418285003077108927126515545155 // 455369916679568501838710898688
+    a1311::T = -15171723902781457 // 63532954684873728
+    a1312::T = 1501203688494867 // 9434957026426880
     a141 = convert(T,
         parse(BigInt, "34188549803371802849576690267872548602326398788953") //
         parse(BigInt, "42496542183406636759747616530102745233754251202880"))
     # a142 = convert(T,0)
-    a143 = convert(T, -18971246281693750 // 1138830954584356089)
-    a144 = convert(T, -59230464334542700 // 2765732318276293359)
+    a143::T = -18971246281693750 // 1138830954584356089
+    a144::T = -59230464334542700 // 2765732318276293359
     a145 = convert(T,
         parse(BigInt, "5147939981309774383134903239728881770043") //
         parse(BigInt, "305929030949718561059100251282184099064"))
@@ -1876,10 +1876,10 @@ function DPRKN12ConstantCache(T::Type, T2::Type)
     a149 = convert(T,
         parse(BigInt, "128398681100219349205889126776607047000") //
         parse(BigInt, "7473801441221286756994805323613917077"))
-    a1410 = convert(T, -49156374556350058671822606102117 // 9039888303968618912866414995904)
-    a1411 = convert(T, 12253036339964386945 // 8828680926314891943)
-    a1412 = convert(T, -647188390508758231059 // 1092148506009694282240)
-    a1413 = convert(T, 10915833599872 // 368729913707897)
+    a1410::T = -49156374556350058671822606102117 // 9039888303968618912866414995904
+    a1411::T = 12253036339964386945 // 8828680926314891943
+    a1412::T = -647188390508758231059 // 1092148506009694282240
+    a1413::T = 10915833599872 // 368729913707897
     a151 = convert(T,
         parse(BigInt,
             "-4939337286263213195547765488387521892799075623007291241961609516532") //
@@ -1940,8 +1940,8 @@ function DPRKN12ConstantCache(T::Type, T2::Type)
         parse(BigInt,
             "2077055064880303907616135969012720011907767004397744786340"))
     # a162 = convert(T,0)
-    a163 = convert(T, 66981514290625 // 1829501741761029)
-    a164 = convert(T, 43495576635800 // 4443075658562499)
+    a163::T = 66981514290625 // 1829501741761029
+    a164::T = 43495576635800 // 4443075658562499
     a165 = convert(T,
         -127865248353371207265315478623656127 //
         10401415428935853634424440540325344)
@@ -1966,11 +1966,11 @@ function DPRKN12ConstantCache(T::Type, T2::Type)
     a1610 = convert(T,
         parse(BigInt, "285912200202585226675651763671663063668290787") //
         parse(BigInt, "65371192072964016939690070594254881767827200"))
-    a1611 = convert(T, -6776815256667778089672518929 // 3693654613173093729492918708)
+    a1611::T = -6776815256667778089672518929 // 3693654613173093729492918708
     a1612 = convert(T,
         398946554885847045598775476868169 // 344154261237450078839899047372800)
-    a1613 = convert(T, -76630698033396272 // 4432017119727044925)
-    a1614 = convert(T, 28401702316003037 // 1469612686944417840)
+    a1613::T = -76630698033396272 // 4432017119727044925
+    a1614::T = 28401702316003037 // 1469612686944417840
     a1615 = convert(T,
         66049942462586341419969330578128801 //
         parse(BigInt, "12691068622536592094919763114637498325"))
@@ -1980,8 +1980,8 @@ function DPRKN12ConstantCache(T::Type, T2::Type)
         parse(BigInt,
             "64192596456995578553872477759926464976144474354415663868673233"))
     # a172 = convert(T,0)
-    a173 = convert(T, 892543892035485503125 // 51401651664490002607536)
-    a174 = convert(T, -12732238157949399705325 // 686579204375687891972088)
+    a173::T = 892543892035485503125 // 51401651664490002607536
+    a174::T = -12732238157949399705325 // 686579204375687891972088
     a175 = convert(T,
         parse(BigInt, "5290376174838819557032232941734928484252549") //
         parse(BigInt, "357179779572898187570048915214361602000384"))
@@ -2014,50 +2014,50 @@ function DPRKN12ConstantCache(T::Type, T2::Type)
     a1712 = convert(T,
         parse(BigInt, "-1372659703515496442825084239977218110461") //
         parse(BigInt, "1313121960368535725613950174847107891200"))
-    a1713 = convert(T, 6144417902699179309851023 // 85608793932459282773805825)
-    a1714 = convert(T, 140294243355138853053241 // 64884622846351585391642880)
+    a1713::T = 6144417902699179309851023 // 85608793932459282773805825
+    a1714::T = 140294243355138853053241 // 64884622846351585391642880
     a1715 = convert(T,
         parse(BigInt, "168671028523891369934964082754523881107337") //
         parse(BigInt, "24062875279623260368388427013982199424119600"))
     # a1716 = convert(T,0)
-    b1 = convert(T, 63818747 // 5262156900)
+    b1::T = 63818747 // 5262156900
     # b2 = convert(T,0)
     # b3 = convert(T,0)
     # b4 = convert(T,0)
     # b5 = convert(T,0)
     # b6 = convert(T,0)
-    b7 = convert(T, 22555300000000 // 261366897038247)
-    b8 = convert(T, 1696514453125 // 6717619827072)
-    b9 = convert(T, -45359872 // 229764843)
-    b10 = convert(T, 19174962087 // 94371046000)
-    b11 = convert(T, -19310468 // 929468925)
-    b12 = convert(T, 16089185487681 // 146694672924800)
-    b13 = convert(T, 1592709632 // 41841694125)
-    b14 = convert(T, 52675701958271 // 4527711056573100)
+    b7::T = 22555300000000 // 261366897038247
+    b8::T = 1696514453125 // 6717619827072
+    b9::T = -45359872 // 229764843
+    b10::T = 19174962087 // 94371046000
+    b11::T = -19310468 // 929468925
+    b12::T = 16089185487681 // 146694672924800
+    b13::T = 1592709632 // 41841694125
+    b14::T = 52675701958271 // 4527711056573100
     b15 = convert(T,
         parse(BigInt, "12540904472870916741199505796420811396") //
         parse(BigInt, "2692319557780977037279406889319526430375"))
     # b16 = convert(T,0)
     # b17 = convert(T,0)
-    bp1 = convert(T, 63818747 // 5262156900)
+    bp1::T = 63818747 // 5262156900
     # bp2 = convert(T,0)
     # bp3 = convert(T,0)
     # bp4 = convert(T,0)
     # bp5 = convert(T,0)
     # bp6 = convert(T,0)
-    bp7 = convert(T, 451106000000000 // 4965971043726693)
-    bp8 = convert(T, 8482572265625 // 26870479308288)
-    bp9 = convert(T, -181439488 // 689294529)
-    bp10 = convert(T, 57524886261 // 188742092000)
-    bp11 = convert(T, -38620936 // 929468925)
-    bp12 = convert(T, 144802669389129 // 586778691699200)
-    bp13 = convert(T, 6370838528 // 41841694125)
-    bp14 = convert(T, 368729913707897 // 4527711056573100)
+    bp7::T = 451106000000000 // 4965971043726693
+    bp8::T = 8482572265625 // 26870479308288
+    bp9::T = -181439488 // 689294529
+    bp10::T = 57524886261 // 188742092000
+    bp11::T = -38620936 // 929468925
+    bp12::T = 144802669389129 // 586778691699200
+    bp13::T = 6370838528 // 41841694125
+    bp14::T = 368729913707897 // 4527711056573100
     bp15 = convert(T,
         parse(BigInt, "111940113324845802831946788738852162520696") //
         parse(BigInt, "1316544263754897771229629968877248424453375"))
-    bp16 = convert(T, -113178587 // 12362232960)
-    bp17 = convert(T, 1 // 40)
+    bp16::T = -113178587 // 12362232960
+    bp17::T = 1 // 40
 
     btilde1 = convert(T,
         Int64(63818747) // Int64(5262156900) -
@@ -2135,8 +2135,8 @@ function DPRKN12ConstantCache(T::Type, T2::Type)
         parse(BigInt, "1316544263754897771229629968877248424453375") -
         parse(BigInt, "198066487470143918516004831967805004004") //
         parse(BigInt, "2855490440070733221356946700793437123125"))
-    bptilde16 = convert(T, Int64(-113178587) // Int64(12362232960) - Int64(1) // Int64(50))
-    bptilde17 = convert(T, 1 // 40)
+    bptilde16::T = Int64(-113178587) // Int64(12362232960) - Int64(1) // Int64(50)
+    bptilde17::T = 1 // 40
     DPRKN12ConstantCache(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15,
         c16, a21, a31, a32, a41, a42, a43, a51, a53, a54, a61, a63, a64,
         a65, a71, a73, a74, a75, a76, a81, a84, a85, a86, a87, a91, a93,

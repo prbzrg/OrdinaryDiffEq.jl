@@ -6,7 +6,7 @@ const FIRST_AUTODIFF_TGRAD_MESSAGE = """
                                1. Turn off automatic differentiation (e.g. Rosenbrock23() becomes
                                   Rosenbrock23(autodiff=false)). More details can be found at
                                   https://docs.sciml.ai/DiffEqDocs/stable/features/performance_overloads/
-                               2. Improving the compatibility of `f` with ForwardDiff.jl automatic 
+                               2. Improving the compatibility of `f` with ForwardDiff.jl automatic
                                   differentiation (using tools like PreallocationTools.jl). More details
                                   can be found at https://docs.sciml.ai/DiffEqDocs/stable/basics/faq/#Autodifferentiation-and-Dual-Numbers
                                3. Defining analytical Jacobians and time gradients. More details can be
@@ -48,7 +48,7 @@ const FIRST_AUTODIFF_JAC_MESSAGE = """
                                1. Turn off automatic differentiation (e.g. Rosenbrock23() becomes
                                   Rosenbrock23(autodiff=false)). More details can befound at
                                   https://docs.sciml.ai/DiffEqDocs/stable/features/performance_overloads/
-                               2. Improving the compatibility of `f` with ForwardDiff.jl automatic 
+                               2. Improving the compatibility of `f` with ForwardDiff.jl automatic
                                   differentiation (using tools like PreallocationTools.jl). More details
                                   can be found at https://docs.sciml.ai/DiffEqDocs/stable/basics/faq/#Autodifferentiation-and-Dual-Numbers
                                3. Defining analytical Jacobians. More details can be
@@ -154,7 +154,7 @@ function jacobian_autodiff(f, x::AbstractArray, odefun, alg)
     sparsity, colorvec = sparsity_colorvec(odefun, x)
     maxcolor = maximum(colorvec)
     chunk_size = get_chunksize(alg) === Val(0) ? nothing : get_chunksize(alg)
-    num_of_chunks = chunk_size === nothing ?
+    num_of_chunks = isnothing(chunk_size) ?
                     Int(ceil(maxcolor / getsize(ForwardDiff.pickchunksize(maxcolor)))) :
                     Int(ceil(maxcolor / _unwrap_val(chunk_size)))
     (forwarddiff_color_jacobian(f, x, colorvec = colorvec, sparsity = sparsity,
@@ -264,9 +264,10 @@ function build_jac_config(alg, f::F1, uf::F2, du1, uprev, u, tmp, du2,
     if !DiffEqBase.has_jac(f) && # No Jacobian if has analytical solution
        (transform || !DiffEqBase.has_Wfact(f)) && # No Jacobian if has_Wfact and Wfact is the one that's used
        (!transform || !DiffEqBase.has_Wfact_t(f)) && # No Jacobian has_Wfact and Wfact_t is the one that's used
-       ((concrete_jac(alg) === nothing && (!haslinsolve || (haslinsolve && # No Jacobian if linsolve doesn't want it
-           (alg.linsolve === nothing || LinearSolve.needs_concrete_A(alg.linsolve))))) ||
-        (concrete_jac(alg) !== nothing && concrete_jac(alg))) # Jacobian if explicitly asked for
+       isnothing(((concrete_jac(alg)) && (!haslinsolve || (haslinsolve && # No Jacobian if linsolve doesn't want it
+                    isnothing((alg.linsolve) ||
+                              LinearSolve.needs_concrete_A(alg.linsolve))))) ||
+                 !isnothing((concrete_jac(alg)) && concrete_jac(alg))) # Jacobian if explicitly asked for
         jac_prototype = f.jac_prototype
 
         if jac_prototype isa SparseMatrixCSC
@@ -351,9 +352,9 @@ end
 
 function resize_grad_config!(grad_config::FiniteDiff.GradientCache, i)
     @unpack fx, c1, c2 = grad_config
-    fx !== nothing && resize!(fx, i)
-    c1 !== nothing && resize!(c1, i)
-    c2 !== nothing && resize!(c2, i)
+    !isnothing(fx) && resize!(fx, i)
+    !isnothing(c1) && resize!(c1, i)
+    !isnothing(c2) && resize!(c2, i)
     grad_config
 end
 

@@ -27,7 +27,7 @@ function DiffEqBase.__init(prob::Union{DiffEqBase.AbstractODEProblem,
     dense = save_everystep &&
                 !(typeof(alg) <: Union{DAEAlgorithm, FunctionMap}) &&
                 isempty(saveat),
-    calck = (callback !== nothing && callback !== CallbackSet()) ||
+    calck = !isnothing((callback) && callback !== CallbackSet()) ||
                 (dense) || !isempty(saveat), # and no dense output
     dt = alg isa FunctionMap && isempty(tstops) ?
          eltype(prob.tspan)(1) : eltype(prob.tspan)(0),
@@ -167,7 +167,7 @@ function DiffEqBase.__init(prob::Union{DiffEqBase.AbstractODEProblem,
 
     if typeof(_alg) <: FunctionMap
         abstol_internal = false
-    elseif abstol === nothing
+    elseif isnothing(abstol)
         if uBottomEltypeNoUnits == uBottomEltype
             abstol_internal = ForwardDiff.value(real(convert(uBottomEltype,
                 oneunit(uBottomEltype) *
@@ -181,7 +181,7 @@ function DiffEqBase.__init(prob::Union{DiffEqBase.AbstractODEProblem,
 
     if typeof(_alg) <: FunctionMap
         reltol_internal = false
-    elseif reltol === nothing
+    elseif isnothing(reltol)
         if uBottomEltypeNoUnits == uBottomEltype
             reltol_internal = real(convert(uBottomEltype,
                 oneunit(uBottomEltype) * 1 // 10^3))
@@ -227,7 +227,7 @@ function DiffEqBase.__init(prob::Union{DiffEqBase.AbstractODEProblem,
     callbacks_internal = CallbackSet(callback)
 
     max_len_cb = DiffEqBase.max_vector_callback_length_int(callbacks_internal)
-    if max_len_cb !== nothing
+    if !isnothing(max_len_cb)
         uBottomEltypeReal = real(uBottomEltype)
         if isinplace(prob)
             callback_cache = DiffEqBase.CallbackCache(u, max_len_cb, uBottomEltypeReal,
@@ -241,7 +241,7 @@ function DiffEqBase.__init(prob::Union{DiffEqBase.AbstractODEProblem,
     end
 
     ### Algorithm-specific defaults ###
-    if save_idxs === nothing
+    if isnothing(save_idxs)
         ksEltype = Vector{rateType}
     else
         ks_prototype = rate_prototype[save_idxs]
@@ -249,7 +249,7 @@ function DiffEqBase.__init(prob::Union{DiffEqBase.AbstractODEProblem,
     end
 
     # Have to convert in case passed in wrong.
-    if save_idxs === nothing
+    if isnothing(save_idxs)
         timeseries = timeseries_init === () ? uType[] :
                      convert(Vector{uType}, timeseries_init)
     else
@@ -325,24 +325,24 @@ function DiffEqBase.__init(prob::Union{DiffEqBase.AbstractODEProblem,
     end
 
     # Setting up the step size controller
-    if (beta1 !== nothing || beta2 !== nothing) && controller !== nothing
+    if !isnothing((beta1) || !isnothing(beta2)) && !isnothing(controller)
         throw(ArgumentError("Setting both the legacy PID parameters `beta1, beta2 = $((beta1, beta2))` and the `controller = $controller` is not allowed."))
     end
 
-    if (beta1 !== nothing || beta2 !== nothing)
+    if !isnothing((beta1) || !isnothing(beta2))
         message = "Providing the legacy PID parameters `beta1, beta2` is deprecated. Use the keyword argument `controller` instead."
         Base.depwarn(message, :init)
         Base.depwarn(message, :solve)
     end
 
-    if controller === nothing
+    if isnothing(controller)
         controller = default_controller(_alg, cache, qoldinit, beta1, beta2)
     end
 
-    dtmin === nothing && (dtmin = DiffEqBase.prob2dtmin(prob))
+    isnothing(dtmin) && (dtmin = DiffEqBase.prob2dtmin(prob))
 
     save_end_user = save_end
-    save_end = save_end === nothing ?
+    save_end = isnothing(save_end) ?
                save_everystep || isempty(saveat) || saveat isa Number ||
                prob.tspan[2] in saveat : save_end
 
@@ -483,7 +483,7 @@ function DiffEqBase.__init(prob::Union{DiffEqBase.AbstractODEProblem,
             integrator.saveiter += 1 # Starts at 1 so first save is at 2
             integrator.saveiter_dense += 1
             copyat_or_push!(ts, 1, t)
-            if save_idxs === nothing
+            if isnothing(save_idxs)
                 copyat_or_push!(timeseries, 1, integrator.u)
                 copyat_or_push!(ks, 1, [rate_prototype])
             else

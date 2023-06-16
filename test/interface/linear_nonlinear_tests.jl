@@ -9,7 +9,7 @@ u0 = rand(3)
 prob = ODEProblem(rn, u0, (0, 50.0))
 
 function precsl(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
-    if newW === nothing || newW
+    if isnothing(newW) || newW
         Pl = lu(convert(AbstractMatrix, W), check = false)
     else
         Pl = Plprev
@@ -18,7 +18,7 @@ function precsl(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
 end
 
 function precsr(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
-    if newW === nothing || newW
+    if isnothing(newW) || newW
         Pr = lu(convert(AbstractMatrix, W), check = false)
     else
         Pr = Prprev
@@ -27,7 +27,7 @@ function precsr(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
 end
 
 function precslr(W, du, u, p, t, newW, Plprev, Prprev, solverdata)
-    if newW === nothing || newW
+    if isnothing(newW) || newW
         Pr = lu(convert(AbstractMatrix, W), check = false)
     else
         Pr = Prprev

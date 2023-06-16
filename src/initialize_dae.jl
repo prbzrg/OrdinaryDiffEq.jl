@@ -67,7 +67,7 @@ end
 
 function _initialize_dae!(integrator, prob::DAEProblem,
     alg::DefaultInit, x::Val{false})
-    if prob.differential_vars === nothing
+    if isnothing(prob.differential_vars)
         _initialize_dae!(integrator, prob,
             ShampineCollocationInit(), x)
     else
@@ -78,7 +78,7 @@ end
 
 function _initialize_dae!(integrator, prob::DAEProblem,
     alg::DefaultInit, x::Val{true})
-    if prob.differential_vars === nothing
+    if isnothing(prob.differential_vars)
         _initialize_dae!(integrator, prob,
             ShampineCollocationInit(), x)
     else
@@ -111,7 +111,7 @@ function _initialize_dae!(integrator, prob::ODEProblem, alg::ShampineCollocation
     tmp = first(get_tmp_cache(integrator))
     u0 = integrator.u
 
-    dt = if alg.initdt === nothing
+    dt = if isnothing(alg.initdt)
         integrator.dt != 0 ? min(integrator.dt / 5, dtmax) :
         (prob.tspan[end] - prob.tspan[begin]) / 1000 # Haven't implemented norm reduction
     else
@@ -203,7 +203,7 @@ function _initialize_dae!(integrator, prob::ODEProblem, alg::ShampineCollocation
     M = integrator.f.mass_matrix
     dtmax = integrator.opts.dtmax
 
-    dt = if alg.initdt === nothing
+    dt = if isnothing(alg.initdt)
         integrator.dt != 0 ? min(integrator.dt / 5, dtmax) :
         (prob.tspan[end] - prob.tspan[begin]) / 1000 # Haven't implemented norm reduction
     else
@@ -538,7 +538,7 @@ function _initialize_dae!(integrator, prob::DAEProblem,
 
     if integrator.opts.internalnorm(tmp, t) <= alg.abstol
         return
-    elseif differential_vars === nothing
+    elseif isnothing(differential_vars)
         error("differential_vars must be set for DAE initialization to occur. Either set consistent initial conditions, differential_vars, or use a different initialization algorithm.")
     end
 
@@ -561,7 +561,7 @@ function _initialize_dae!(integrator, prob::DAEProblem,
         f(out, du_tmp, uu, p, t)
     end
 
-    if alg.nlsolve !== nothing
+    if !isnothing(alg.nlsolve)
         nlsolve = alg.nlsolve
     else
         nlsolve = NewtonRaphson(autodiff = isAD)
@@ -593,7 +593,7 @@ function _initialize_dae!(integrator, prob::DAEProblem,
 
     if integrator.opts.internalnorm(f(integrator.du, integrator.u, p, t), t) <= alg.abstol
         return
-    elseif differential_vars === nothing
+    elseif isnothing(differential_vars)
         error("differential_vars must be set for DAE initialization to occur. Either set consistent initial conditions, differential_vars, or use a different initialization algorithm.")
     end
 

@@ -54,7 +54,7 @@ du_cache(nlcache::Union{NLFunctionalCache, NLAndersonCache, NLNewtonCache}) = (n
 
 function du_alias_or_new(nlsolver::AbstractNLSolver, rate_prototype)
     _du_cache = du_cache(nlsolver)
-    if _du_cache === nothing
+    if isnothing(_du_cache)
         zero(rate_prototype)
     else
         first(_du_cache)
@@ -333,7 +333,7 @@ acceleration based on the current iterate `z` and the settings and history in th
     Qcur, Rcur = view(Q, :, 1:history), UpperTriangular(view(R, 1:history, 1:history))
 
     # check condition (TODO: incremental estimation)
-    if droptol !== nothing
+    if !isnothing(droptol)
         while cond(R) > droptol && history > 1
             qrdelete!(Q, R, history)
             history -= 1
@@ -401,7 +401,7 @@ by performing Anderson acceleration based on the settings and history in the `ca
     Qcur, Rcur = view(Q, :, 1:history), UpperTriangular(view(R, 1:history, 1:history))
 
     # check condition (TODO: incremental estimation)
-    if droptol !== nothing
+    if !isnothing(droptol)
         while cond(R) > droptol && history > 1
             qrdelete!(Q, R, history)
             history -= 1

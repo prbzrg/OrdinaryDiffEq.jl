@@ -83,10 +83,10 @@ end
 function dolinsolve(integrator, linsolve; A = nothing, linu = nothing, b = nothing,
     du = nothing, u = nothing, p = nothing, t = nothing,
     weight = nothing, solverdata = nothing,
-    reltol = integrator === nothing ? nothing : integrator.opts.reltol)
-    A !== nothing && (linsolve.A = A)
-    b !== nothing && (linsolve.b = b)
-    linu !== nothing && (linsolve.u = linu)
+    reltol = isnothing(integrator) ? nothing : integrator.opts.reltol)
+    !isnothing(A) && (linsolve.A = A)
+    !isnothing(b) && (linsolve.b = b)
+    !isnothing(linu) && (linsolve.u = linu)
 
     Plprev = linsolve.Pl isa LinearSolve.ComposePreconditioner ? linsolve.Pl.outer :
              linsolve.Pl
@@ -95,11 +95,11 @@ function dolinsolve(integrator, linsolve; A = nothing, linu = nothing, b = nothi
 
     _alg = unwrap_alg(integrator, true)
 
-    _Pl, _Pr = _alg.precs(linsolve.A, du, u, p, t, A !== nothing, Plprev, Prprev,
+    _Pl, _Pr = _alg.precs(linsolve.A, du, u, p, t, !isnothing(A), Plprev, Prprev,
         solverdata)
-    if (_Pl !== nothing || _Pr !== nothing)
-        __Pl = _Pl === nothing ? SciMLOperators.IdentityOperator(length(integrator.u)) : _Pl
-        __Pr = _Pr === nothing ? SciMLOperators.IdentityOperator(length(integrator.u)) : _Pr
+    if !isnothing((_Pl) || !isnothing(_Pr))
+        __Pl = isnothing(_Pl) ? SciMLOperators.IdentityOperator(length(integrator.u)) : _Pl
+        __Pr = isnothing(_Pr) ? SciMLOperators.IdentityOperator(length(integrator.u)) : _Pr
         linsolve.Pl = __Pl
         linsolve.Pr = __Pr
     end
@@ -107,7 +107,7 @@ function dolinsolve(integrator, linsolve; A = nothing, linu = nothing, b = nothi
     linres = solve!(linsolve; reltol)
 
     # TODO: this ignores the add of the `f` count for add_steps!
-    if integrator isa SciMLBase.DEIntegrator && _alg.linsolve !== nothing &&
+    if integrator isa SciMLBase.DEIntegrator && !isnothing(_alg.linsolve) &&
        !LinearSolve.needs_concrete_A(_alg.linsolve) &&
        linsolve.A isa WOperator && linsolve.A.J isa AbstractSciMLOperator
         if alg_autodiff(_alg) isa AutoForwardDiff
@@ -129,8 +129,8 @@ function wrapprecs(_Pl::Nothing, _Pr::Nothing, weight, u)
 end
 
 function wrapprecs(_Pl, _Pr, weight, u)
-    Pl = _Pl === nothing ? SciMLOperators.IdentityOperator(length(u)) : _Pl
-    Pr = _Pr === nothing ? SciMLOperators.IdentityOperator(length(u)) : _Pr
+    Pl = isnothing(_Pl) ? SciMLOperators.IdentityOperator(length(u)) : _Pl
+    Pr = isnothing(_Pr) ? SciMLOperators.IdentityOperator(length(u)) : _Pr
     Pl, Pr
 end
 

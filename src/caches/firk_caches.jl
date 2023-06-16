@@ -22,7 +22,7 @@ function alg_cache(alg::RadauIIA3, u, rate_prototype, ::Type{uEltypeNoUnits},
     uToltype = constvalue(uBottomEltypeNoUnits)
     tab = RadauIIA3Tableau(uToltype, constvalue(tTypeNoUnits))
 
-    κ = convert(uToltype, 1 // 100)
+    κ::uToltype = 1 // 100
     J = false .* _vec(rate_prototype) .* _vec(rate_prototype)'
 
     RadauIIA3ConstantCache(uf, tab, κ, one(uToltype), 10000, u, u, u, dt, dt,
@@ -73,7 +73,7 @@ function alg_cache(alg::RadauIIA3, u, rate_prototype, ::Type{uEltypeNoUnits},
     uToltype = constvalue(uBottomEltypeNoUnits)
     tab = RadauIIA3Tableau(uToltype, constvalue(tTypeNoUnits))
 
-    κ = alg.κ !== nothing ? convert(uToltype, alg.κ) : convert(uToltype, 1 // 100)
+    κ::uToltype = !isnothing(alg.κ) ? alg.κ : 1 // 100
 
     z1 = zero(u)
     z2 = zero(u)
@@ -146,7 +146,7 @@ function alg_cache(alg::RadauIIA5, u, rate_prototype, ::Type{uEltypeNoUnits},
     uToltype = constvalue(uBottomEltypeNoUnits)
     tab = RadauIIA5Tableau(uToltype, constvalue(tTypeNoUnits))
 
-    κ = alg.κ !== nothing ? convert(uToltype, alg.κ) : convert(uToltype, 1 // 100)
+    κ::uToltype = !isnothing(alg.κ) ? alg.κ : 1 // 100
     J = false .* _vec(rate_prototype) .* _vec(rate_prototype)'
 
     RadauIIA5ConstantCache(uf, tab, κ, one(uToltype), 10000, u, u, u, dt, dt,
@@ -208,7 +208,7 @@ function alg_cache(alg::RadauIIA5, u, rate_prototype, ::Type{uEltypeNoUnits},
     uToltype = constvalue(uBottomEltypeNoUnits)
     tab = RadauIIA5Tableau(uToltype, constvalue(tTypeNoUnits))
 
-    κ = alg.κ !== nothing ? convert(uToltype, alg.κ) : convert(uToltype, 1 // 100)
+    κ::uToltype = !isnothing(alg.κ) ? alg.κ : 1 // 100
 
     z1 = zero(u)
     z2 = zero(u)

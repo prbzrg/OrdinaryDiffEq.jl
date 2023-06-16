@@ -66,7 +66,7 @@ for f in [f_oop, f_ip]
                     ]))
                     sol = solve(prob, Solver(autodiff = ad), reltol = tol, abstol = tol)
                     @test sol.retcode == ReturnCode.Success
-                    if tol != nothing
+                    if !isnothing(tol)
                         @test sol_std.u[end]≈sol.u[end] atol=tol
                     else
                         @test sol_std.u[end] ≈ sol.u[end]
